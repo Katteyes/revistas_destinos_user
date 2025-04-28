@@ -30,12 +30,9 @@ export default function Contacto() {
             Somos Destinos Turismo
           </h1>
           <p className="font-light mb-2">
-            Somos una plataforma dedicada a la promoción de turismo y el desarrollo regional, con
-            proyección nacional e internacional.
-          </p>
-          <p className="font-light">
-            En Destinos Turismo conectamos, promovemos y proyectamos lo mejor de nuestra tierra
-            hacia el mundo.
+            Somos una plataforma dedicada a la promoción de turismo y el desarrollo global, con
+            proyección nacional e internacional.En Destinos Turismo conectamos, promovemos y
+            proyectamos lo mejor de nuestra tierra hacia el mundo.
           </p>
         </article>
 

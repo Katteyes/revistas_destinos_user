@@ -12,12 +12,11 @@ export default function About() {
             <div className="flex gap-48">
               <img src="/solPeruano.png" alt="Icono inca" className="w-22 h-20 ml-21" />
               <div className="transform -translate-x-40">
-                <h3 className="text-xl font-extrabold w-22 text-blue-900">ALCANCE</h3>
+                <h3 className="text-xl font-extrabold w-22 text-blue-900">NOSOTROS</h3>
                 <p className="text-justify mt-2">
-                  Informar sobre temas relevantes a nivel nacional, pero también brindar
-                  herramientas de gestión para el desarrollo sostenible de las regiones, con el
-                  objetivo de contribuir al posicionamiento del Perú en un mercado cada vez más
-                  globalizado y competitivo.
+                  Informar sobre temas relevantes a nivel internacional, pero también brindar
+                  herramientas de gestión para el desarrollo sostenible de los diversos paises, con
+                  el objetivo de contribuir a un mercado cada vez más globalizado y competitivo.
                 </p>
               </div>
             </div>
@@ -29,11 +28,11 @@ export default function About() {
               <div className="transform -translate-x-40">
                 <h3 className="text-xl font-extrabold w-22 text-blue-900">EDICIONES</h3>
                 <p className="text-justify mt-2">
-                  Diseñamos una edición especial dedicada a la región que cumple aniversario o con
-                  motivo de algún evento o fecha significativa para la zona, lo cual incluye:
-                  principales productos y atractivos turísticos, hotelería, gastronomía, folklore,
-                  cultura, fiestas patronales, desarrollo integral, proyecciones, negocios y otros
-                  de interés para la zona.
+                  Diseñamos ediciones especiales dedicadas a países y regiones que celebran
+                  aniversarios o eventos significativos, incluyendo información sobre sus
+                  principales productos, atractivos turísticos, hotelería, gastronomía, cultura,
+                  fiestas tradicionales, desarrollo integral, proyecciones, oportunidades de negocio
+                  y otros temas de interés local e internacional.
                 </p>
               </div>
             </div>

@@ -86,7 +86,7 @@ export default function Register() {
           <div className="flex space-x-4 mb-4">
             <input
               type="text"
-              placeholder="Compañía"
+              placeholder="Empresa"
               className="p-3 border rounded-xl w-1/2 bg-[#FFFFFF] border-gray-400"
               value={company}
               onChange={e => setCompany(e.target.value)}

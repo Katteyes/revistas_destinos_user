@@ -45,10 +45,17 @@ export default function Login() {
             onChange={e => setPassword(e.target.value)}
           />
           <button
-            className="bg-blue-900 text-white py-2 font-semibold p-12 ml-20 w-[220px]"
+            className="bg-blue-900 text-white py-2 font-semibold p-12 ml-20 w-[220px] mb-5"
             onClick={handleLogin}
           >
             INICIAR SESIÓN
+          </button>
+
+          <button
+            className="bg-blue-900 text-white py-2 font-semibold p-12 ml-20 w-[220px]"
+            onClick={() => navigate('/register')}
+          >
+            REGISTRARSE
           </button>
         </div>
       </div>
