@@ -36,7 +36,7 @@ export default function Header() {
         </button>
 
         <a href="/">
-          <img src="/logodestinos.webp" className="w-auto h-24" alt="Destinos Logo" />
+          <img src="/logoDestinos.png" className="w-auto h-24" alt="Destinos Logo" />
         </a>
 
         <button aria-label="Iniciar sesión">

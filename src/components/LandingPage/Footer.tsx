@@ -4,11 +4,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="min-h-[24rem] bg-[#111C85] text-white px-4 md:px-12 py-8">
+    <footer className="min-h-[12rem] bg-[#111C85] text-white px-4 md:px-12 py-8">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 md:gap-24">
         <div className="flex flex-col items-center text-center">
           <img
-            src="/logodestinos.webp"
+            src="/logoDestinos.png"
             className="w-auto h-32 md:h-44"
             alt="Logo Destinos Perú"
             loading="lazy"
