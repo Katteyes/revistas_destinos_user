@@ -16,7 +16,7 @@ export default function Revistas() {
   const [revistas, setRevistas] = useState<Revista[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/magazines')
+    fetch('https://backend-destinos.impplac.com/api/magazines')
       .then(response => {
         if (!response.ok) {
           throw new Error('Error al obtener las revistas');
@@ -34,23 +34,22 @@ export default function Revistas() {
         <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-8">
           REVISTAS DESTINOS TURISMO
         </h1>
-        <div className="flex justify-center items-center grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-8 lg:gap-16 px-4 lg:px-12 max-w-7xl mx-auto">
+        <div className=" justify-center items-center grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-8 lg:gap-16 px-4 lg:px-12 max-w-7xl mx-auto">
           {' '}
           {revistas.map(revista => (
             <div
               key={revista.id}
-              className="bg-[#C783175E] h-92 rounded-3xl justify-center items-center flex flex-col"
+              className="bg-[#C783175E] h-92 p-4 rounded-3xl justify-center items-center flex flex-col"
             >
               {revista.cover_image_url && (
                 <>
                   <img
                     src={revista.cover_image_url}
-                    className="p-4"
+                    className=""
                     alt={`Revista ${revista.title}`}
                   />
-                  <span className="text-[#111C85] -mt-2 text-[12px] font-bold">
-                    {revista.title}
-                  </span>
+
+                  <span className="text-[#111C85] text-[12px] font-bold">{revista.title}</span>
                 </>
               )}
             </div>
