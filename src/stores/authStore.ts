@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://backend-destinos.impplac.com';
 
 interface LoginStore {
   email: string;
