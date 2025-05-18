@@ -66,7 +66,7 @@ const ContentCard: React.FC<ContentCardProps> = ({
 
       {/* Título */}
       <div className="px-6 py-4 flex-grow flex">
-        <span className="block text-[#111C85] text-xl font-semibold leading-snug line-clamp-3 text-left w-full transition-colors duration-200 hover:text-[#1726b2]">
+        <span className="block text-[#111C85] text-md sm:text-md lg:text-xl font-semibold leading-snug line-clamp-3 text-left w-full transition-colors duration-200 hover:text-[#1726b2]">
           {title}
         </span>
       </div>
