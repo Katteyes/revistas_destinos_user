@@ -7,7 +7,7 @@ function LandingPage() {
     <>
       <section className="bg-[#FFF8F8] min-h-screen">
         <Header />
-        <article className="flex mx-36 gap-24 justify-center items-start my-14">
+        <article className="flex mx-auto gap-8 justify-center items-start my-14 flex-wrap">
           <Hero />
         </article>
         <Footer />

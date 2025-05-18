@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
+import ContentCard from './ContentCard.tsx';
 
 interface Content {
   id: number;
   title: string;
   subtitle: string;
   author: string;
-  publication_date: Date;
+  publication_date: string;
   main_image_url: string;
   slug: string;
-  category_id: number;
-  content_type_id: number;
+  category: {
+    id: number;
+    name: string;
+  };
+  type: {
+    id: number;
+    name: string;
+  };
 }
+
 export default function Hero() {
   const [contents, setContents] = useState<Content[]>([]);
 
@@ -36,23 +44,17 @@ export default function Hero() {
         <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-8">
           Nuestras Noticias
         </h1>
-        <div className="flex grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-8 lg:gap-16 px-4 lg:px-12 max-w-7xl mx-auto">
-          {' '}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-6 gap-y-6 px-15 sm:px-8 max-w-6xl mx-auto">
           {contents.map(content => (
-            <div key={content.id} className="bg-[#C783175E] h-50 rounded-3xl p-4 flex flex-col">
-              {content.main_image_url && (
-                <>
-                  <div className="overflow-hidden h-48">
-                    <img
-                      src={content.main_image_url}
-                      className="aspect-video w-auto h-auto"
-                      alt={`Content ${content.title}`}
-                    />
-                  </div>
-                  <span className="text-[#111C85] text-[12px] font-bold">{content.title}</span>
-                </>
-              )}
-            </div>
+            <ContentCard
+              key={content.id}
+              title={content.title}
+              main_image_url={content.main_image_url}
+              category={content.category.name}
+              author={content.author}
+              publication_date={content.publication_date}
+              route={`/contenido/${content.slug}`} //Enlace al detalle del contenido
+            />
           ))}
         </div>
       </section>
