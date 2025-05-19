@@ -38,7 +38,7 @@ export default function Contacto() {
 
         <div className="flex gap-4 mt-10 justify-center">
           <a
-            href="https://facebook.com/destinosturismo"
+            href="https://www.facebook.com/destinosturism?locale=es_LA"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
