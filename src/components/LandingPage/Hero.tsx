@@ -18,12 +18,6 @@ export default function Hero() {
   const [isPaused, setIsPaused] = useState(false);
   const autoplayInterval = useRef<NodeJS.Timeout | null>(null);
 
-  // Función para construir la URL de la imagen optimizada
-  function getImageUrl(imageName: string, width: number) {
-    return `/assets/optimized/${imageName}-${width}.jpg`;
-  }
-
-  // Fetch contents
   useEffect(() => {
     fetch("https://backend-destinos.impplac.com/api/contents")
       .then((response) => {
@@ -34,38 +28,47 @@ export default function Hero() {
       .catch((error) => console.error(error));
   }, []);
 
-  // Autoplay: cambia slide cada 5 segundos si no está pausado
+  const importantTitles = [
+    "Viajes educativos a la ciudad de Madrid",
+    "Cómo visitar Roma y el Vaticano durante el funeral del papa Francisco",
+    "Turismo: Naturaleza que sorprende",
+  ];
+
+  const importantContents = contents.filter((content) =>
+    importantTitles.includes(content.title)
+  );
+
+  const totalSlides = importantContents.length;
+
   useEffect(() => {
-    if (contents.length === 0) return;
+    if (totalSlides === 0) return;
 
     if (!isPaused) {
       autoplayInterval.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev === contents.length - 1 ? 0 : prev + 1));
+        setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
       }, 5000);
     }
 
     return () => {
       if (autoplayInterval.current) clearInterval(autoplayInterval.current);
     };
-  }, [isPaused, contents]);
+  }, [isPaused, totalSlides]);
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? contents.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === contents.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
   };
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
   };
 
-  // Swipe handlers
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
-
-  const minSwipeDistance = 50; // mínimo en px para detectar swipe
+  const minSwipeDistance = 50;
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.changedTouches[0].clientX;
@@ -82,10 +85,8 @@ export default function Hero() {
       Math.abs(touchStartX.current - touchEndX.current) > minSwipeDistance
     ) {
       if (touchStartX.current > touchEndX.current) {
-        // swipe izquierda => siguiente
         nextSlide();
       } else {
-        // swipe derecha => anterior
         prevSlide();
       }
     }
@@ -101,9 +102,9 @@ export default function Hero() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Carrusel - ancho total */}
+      {/* Carrusel */}
       <div
-        className="relative w-full overflow-hidden shadow-lg"
+        className="relative w-full max-w-6xl mx-auto overflow-hidden shadow-lg mt-8 mb-8 rounded-3xl"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -112,48 +113,30 @@ export default function Hero() {
           className="flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-{contents.map((content) => {
-  console.log('Imagen original URL:', content.main_image_url);
-  // Extraemos el nombre base de la imagen desde la URL original:
-  const urlParts = content.main_image_url.split("/");
-  const originalFileName = urlParts[urlParts.length - 1]; // ej. imagen1.jpg
-  const imageName = originalFileName.replace(/\.\w+$/, ""); // "imagen1"
-  
-  // Logs adicionales
-  console.log("Nombre base extraído:", imageName);
-  console.log("URL src 720:", getImageUrl(imageName, 720));
-  console.log("URL src 1280:", getImageUrl(imageName, 1280));
-  console.log("URL src 1920:", getImageUrl(imageName, 1920));
-
-  return (
-    <div
-      key={content.id}
-      className="min-w-full h-[250px] sm:h-[350px] md:h-[400px] relative"
-    >
-      <a href={`/posts/${content.slug}`} className="block w-full h-full">
-        <img
-          src={getImageUrl(imageName, 1920)} // versión grande fallback
-          srcSet={`
-            ${getImageUrl(imageName, 720)} 720w,
-            ${getImageUrl(imageName, 1280)} 1280w,
-            ${getImageUrl(imageName, 1920)} 1920w
-          `}
-          sizes="(max-width: 640px) 720px, (max-width: 1024px) 1280px, 1920px"
-          alt={content.title}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute bottom-6 left-6 bg-black bg-opacity-50 p-4 rounded-md max-w-[70%] text-white">
-          <h2 className="text-2xl font-semibold">{content.title}</h2>
-          <p className="mt-2 text-sm">{content.subtitle}</p>
-        </div>
-      </a>
-    </div>
-  );
-})}
+          {importantContents.map((content) => (
+<div key={content.id} className="min-w-full relative rounded-3xl overflow-hidden">
+  <a href={`/posts/${content.slug}`} className="block w-full h-full">
+    <img
+      src={content.main_image_url}
+      alt={content.title}
+      className="w-full h-full object-cover"
+      loading="lazy"
+    />
+{/* Fondo semi-transparente y contenedor de descripción responsivo */}
+<div className="absolute bottom-4 left-4 right-4 bg-gradient-to-t from-white/40 to-transparent backdrop-blur-sm rounded-md p-4 z-10">
+  <h2 className="text-[#1a1a1a] text-lg sm:text-xl md:text-2xl font-bold">
+    {content.title}
+  </h2>
+  <p className="mt-2 text-sm sm:text-base md:text-lg text-[#333333]">
+    {content.subtitle}
+  </p>
+</div>
+  </a>
+</div>
+          ))}
         </div>
 
-        {/* Botones con fondo pálido */}
+        {/* Botones */}
         <button
           onClick={prevSlide}
           aria-label="Anterior"
@@ -170,9 +153,9 @@ export default function Hero() {
         </button>
       </div>
 
-      {/* Indicadores (dots) */}
+      {/* Indicadores */}
       <div className="flex justify-center mt-4 gap-3">
-        {contents.map((_, index) => (
+        {importantContents.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
@@ -183,6 +166,36 @@ export default function Hero() {
           />
         ))}
       </div>
+
+      {/* Noticias */}
+      <section className="my-16 w-full max-w-6xl px-8 sm:px-8 mx-auto">
+        <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-8">
+          Nuestras Noticias
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-6 gap-y-6">
+          {contents.map((content) => (
+            <div
+              key={content.id}
+              className="bg-[#C783175E] rounded-3xl p-4 flex flex-col h-full"
+            >
+              {content.main_image_url && (
+                <>
+                  <div className="overflow-hidden h-48 rounded-lg mb-3">
+                    <img
+                      src={content.main_image_url}
+                      alt={content.title}
+                      className="w-full h-full object-cover rounded-3xl"
+                    />
+                  </div>
+                  <span className="text-[#111C85] text-[12px] font-bold">
+                    {content.title}
+                  </span>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
     </section>
   );
 }
