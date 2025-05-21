@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
+
 export default function Header() {
   const [searchText, setSearchText] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -13,6 +15,9 @@ export default function Header() {
     console.log('Buscando:', searchText);
   };
 
+  //DIVISOR DE ITEMS
+  const Divider = () => <div className="h-5 w-0.5 bg-blue-800" aria-hidden="true" />;
+  
   // ITEMS 
   const navigationItems = [
     { label: 'INICIO', href: '/' },
@@ -65,7 +70,7 @@ export default function Header() {
   }, [lastScrollY]);
 
   // LINKS LATERALES 
-  const socialLinks = [
+ const socialLinks = [
     { label: 'Facebook', href: 'https://www.facebook.com/destinosturism?locale=es_LA', iconSrc: '/socials/facebook.svg'  },
     { label: 'Instagram', href: 'https://instagram.com', iconSrc: '/socials/instagram2.svg' },
     { label: 'Youtube', href: 'https://www.youtube.com/@RevistaDestinosPer%C3%BA', iconSrc: '/socials/youtube.svg' },
@@ -75,8 +80,8 @@ export default function Header() {
     <header role="banner">
       {/* nav principal */} 
       <nav className="flex justify-between items-center px-5 md:px-32 pt-8" aria-label="Principal">
-        {/* REDES SOCIALES */}
-        <div className="relative" ref={dropdownRef}>
+        {/* REDES SOCIALES*/}
+        {/*<div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="flex items-center justify-center w-10 h-10 mx-5 p-2 cursor-pointer bg-[#111C85] border rounded-[0.2rem] border-[#ffffffdd] hover:bg-[#1a2aa0] transition-colors"
@@ -105,15 +110,17 @@ export default function Header() {
               </ul>
             </div>
           )}
+        </div>*/}
+
+        <div className="w-full text-center">
+          <a href="/">
+            <img src="/logoDestinos.png" className="inline-block h-20 md:h-24" alt="Destinos Logo" />
+          </a>
         </div>
-        {/* LOGO */}
-        <a href="/">
-          <img src="/logoDestinos.png" className="w-auto h-18 md:h-24 " alt="Destinos Logo" />
-        </a>
-        {/* INCIO DE SESIÓN */}
+
         <button aria-label="Iniciar sesión">
-          <a href="/login" className="hidden md:flex text-sm items-center gap-2 px-4 py-2 hover:bg-[#f0f4ff] bg-[#FFFFFF] border-[0.1rem] border-[#111C85] rounded-3xl  overflow-hidden transition-all duration-300">
-            <span className="text-[#111C85] hover:text-[#2c3052]">Iniciar sesión</span>
+          <a href="/login" className="hidden md:flex text-sm items-center gap-2 px-8 py-2 hover:bg-[#f8f0e3]/30 bg-[#FFFFFF] border-[0.1rem] border-[#111C85] rounded-3xl  overflow-hidden transition-all duration-300 whitespace-nowrap">
+            <span className="text-[#000000] hover:text-[#111C85]">Iniciar sesión</span>
             <img
               src="/icons/user.svg"
               className="w-auto h-7 p-1 bg-[#111C85] rounded-full"
@@ -122,54 +129,74 @@ export default function Header() {
             />
           </a>
         </button>
-        {/* BOTÓN MENÚ */}
-        <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menú" className="md:hidden flex flex-shrink-0 items-center justify-center w-10 h-10 mx-5 p-2 cursor-pointer border rounded-[0.2rem] border-[#ffffffdd] bg-[#111C85] hover:bg-[#1a2aa0] transition-colors">
+
+        <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menú" className="md:hidden flex flex-shrink-0 items-center justify-center w-10 h-10 p-2 cursor-pointer border rounded-[0.2rem] border-[#ffffffdd] bg-[#111C85] hover:bg-[#1a2aa0] transition-colors">
           <img src="/icons/menu.svg" alt="Menú" />
         </button>
       </nav>
 
       {/* nav secundario */}       
       <nav className={`flex flex-col items-center justify-center gap-30 py-3 md:top-6 transform transition-transform duration-600
-        ${menuOpen && isVisible|| 'hidden'} fixed top-25 right-0 md:flex md:flex-row md:gap-30 md:bg-transparent md:relative left-0 z-50 p-4 md:p-0`} 
+        ${menuOpen && isVisible|| 'hidden'} fixed top-25 right-1 md:flex md:flex-row md:gap-30 md:bg-transparent md:relative left-0 z-50 p-4 md:p-0`} 
         aria-label="Secundaria"
       >
-      {/* BARRA DE NAVEGACIÓN */}
         <ul className="flex flex-col md:flex-row items-end md:items-center w-full md:w-auto gap-3 md:justify-center px-5 md:px-2  ">
-          {navigationItems.map((item  ) => (    
-            <>            
+          {navigationItems.map((item, index ) => (    
+            <>   
+              {index > 0 && (
+                <div className="hidden md:block">
+                  <Divider key={`divider-${index}`} />
+                </div>
+              )}         
               <li key={item.label} className="relative group ">
               <a
                 href={item.href}
-                className={`md:text-sm text-[0.7rem] py-2 px-4 rounded-xl transition-colors duration-300 ${
+                className={`md:text-sm text-[0.7rem] py-2 px-4 rounded-sm shadow-md md:shadow-none transition-colors duration-300 ${
                   window.location.pathname === item.href
-                    ? "bg-[#f0f4ff] text-[#111C85]"
-                    : "bg-blue-900 text-white hover:bg-[#f0f4ff] hover:text-[#111C85]"
+                    ? "bg-[#f8f0e3]/20 text-[#111C85]"
+                    : "text-[#000000] hover:bg-[#f8f0e3]/30 hover:text-[#111C85]"
                 }`}
               >
               {item.label}
+              <span
+                  className={`hidden md:block absolute left-0 right-0 -bottom-1 h-[2px] bg-[#111C85]/80 rounded-full transition-all duration-300 ${
+                    window.location.pathname === item.href 
+                    ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  }`}
+                ></span>
               </a>
               </li>
             </>
           ))}
         </ul>
-        {/* BARRA DE BÚSQUEDA */}
-        <form
-          onSubmit={handleSearch}
-          className={"lg:flex hidden items-center bg-white border-[0.1rem] border-[#111C85] rounded-xl gap-2 px-4 py-2 overflow-hidden transition-all duration-300"} 
-        >
-          <button type="submit" aria-label="Buscar">
-            <img src="/icons/search.svg" alt="" aria-hidden="true"/>
-          </button>
-          
-          <input
-            className='outline-none w-[18rem]'
-            type="text"
-            placeholder="Buscar..."
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            aria-label="Campo de búsqueda"
-          />
-        </form>
+
+        {['/', '/revistas'].includes(window.location.pathname) && (
+          <form
+            onSubmit={handleSearch}
+            className={`lg:flex hidden items-center bg-white border-[0.1rem] border-[#111C85] rounded-2xl gap-2 overflow-hidden transition-all duration-300 ${
+              isExpanded ? 'px-4 py-2 w-[18rem]' : 'px-2 py-2 w-12'
+              }`}
+              onFocus={() => setIsExpanded(true)}
+              onBlur={() => {
+                if (searchText === '') setIsExpanded(false);
+              }}
+          >
+            <button type="submit" aria-label="Buscar">
+              <img src="/icons/search.svg" alt="" aria-hidden="true" />
+            </button>
+            <input
+              className={`outline-none transition-all duration-300 ${
+                isExpanded ? 'w-full' : 'w-0'
+              }`}
+              type="text"
+              placeholder="Buscar..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              aria-label="Campo de búsqueda"
+              onBlur={() => setTimeout(() => setIsExpanded(false), 200)}
+            />
+          </form>
+        )}
       </nav>
     </header>
   );
