@@ -58,8 +58,6 @@ export default function ContenidoDetalle() {
 
   return (
     <div className="w-full">
-
-
       {/* Imagen principal con overlay azul claro y texto encima */}
       <div className="relative w-full h-80 md:h-[500px] overflow-hidden
             opacity-0 translate-x-[-0px]
@@ -76,87 +74,83 @@ export default function ContenidoDetalle() {
         </div>
       </div>
 
-      <div className="hidden lg:block fixed top-188 left-90 z-30">
-        <SocialShareBar />
+      {/* CONTENEDOR PRINCIPAL CON POSICIONAMIENTO RELATIVO */}
+      <div className="flex justify-center relative">
+        
+        {/* BARRA DE REDES SOCIALES */}
+        <div className="hidden lg:block sticky top-90 -ml-26 self-start z-30">
+          <SocialShareBar />
+        </div>
+
+        {/* TEXTO DEL CONTENIDO */}
+        <div
+          className="max-w-5xl p-4 md:p-8 space-y-4 text-gray-800 overflow-hidden
+      opacity-0 translate-x-[30px]
+      animate-[fadeInLeft_1s_ease-out_forwards]"
+        >
+          {contenido.blocks.map((block) => {
+            switch (block.type) {
+              case 'paragraph':
+                return (
+                  <p key={block.id} className="text-lg leading-relaxed text-justify">
+                    {block.data}
+                  </p>
+                );
+              case 'subtitle':
+                return (
+                  <h2
+                    key={block.id}
+                    className="text-3xl md:text-3xl font-bold text-blue-800 text-justify relative mb-4 pl-4 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-[rgba(199,131,23,0.37)] animate-fade-in"
+                  >
+                    {block.data}
+                  </h2>
+                );
+              case 'note':
+                return (
+                  <p
+                    key={block.id}
+                    className="italic text-white text-justify bg-[rgba(30,64,175,100)] px-6 py-4 my-6"
+                  >
+                    {block.data}
+                  </p>
+                );
+              case 'image':
+                return (
+                  <div
+                    key={block.id}
+                    className="w-full max-h-80 md:max-h-100 flex justify-center overflow-hidden py-4"
+                  >
+                    <img
+                      src={block.data}
+                      alt="Contenido visual"
+                      className="max-h-95 w-auto object-contain transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                );
+              case 'list':
+                return (
+                  <ul key={block.id} className="list-disc list-inside pl-4 space-y-1 text-justify">
+                    {block.data.split('|').map((item, index) => (
+                      <li key={index}>{item.trim()}</li>
+                    ))}
+                  </ul>
+                );
+              case 'bold':
+                return (
+                  <p key={block.id} className="font-bold text-lg text-justify">
+                    {block.data}
+                  </p>
+                );
+              default:
+                return (
+                  <p key={block.id} className="text-red-600 text-justify">
+                    Tipo de bloque desconocido: {block.type}
+                  </p>
+                );
+            }
+          })}
+        </div>
       </div>
-
-      {/* Texto del contenido justificado */}
-      <div
-        className="max-w-6xl mx-auto p-4 md:p-8 space-y-4 text-gray-800 overflow-hidden
-            opacity-0 translate-x-[30px]
-            animate-[fadeInLeft_1s_ease-out_forwards]"
-      >
-        {contenido.blocks.map((block) => {
-          switch (block.type) {
-            case 'paragraph':
-              return (
-                <p key={block.id} className="text-lg leading-relaxed text-justify">
-                  {block.data}
-                </p>
-              );
-
-            case 'subtitle':
-              return (
-                <h2
-                  key={block.id}
-                  className="text-3xl md:text-3xl font-bold text-blue-800 text-justify relative mb-4 pl-4 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-[rgba(199,131,23,0.37)] animate-fade-in"
-                >
-                  {block.data}
-                </h2>
-              );
-
-            case 'note':
-              return (
-                <p
-                  key={block.id}
-                  className="italic text-white text-justify bg-[rgba(30,64,175,100)] px-6 py-4 my-6"
-                >
-                  {block.data}
-                </p>
-              );
-
-            case 'image':
-              return (
-                <div
-                  key={block.id}
-                  className="w-full max-h-80 md:max-h-100 flex justify-center overflow-hidden py-4"
-                >
-                  <img
-                    src={block.data}
-                    alt="Contenido visual"
-                    className="max-h-95 w-auto object-contain transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              );
-
-            case 'list':
-              return (
-                <ul key={block.id} className="list-disc list-inside pl-4 space-y-1 text-justify">
-                  {block.data.split('|').map((item, index) => (
-                    <li key={index}>{item.trim()}</li>
-                  ))}
-                </ul>
-              );
-
-            case 'bold':
-              return (
-                <p key={block.id} className="font-bold text-lg text-justify">
-                  {block.data}
-                </p>
-              );
-
-            default:
-              return (
-                <p key={block.id} className="text-red-600 text-justify">
-                  Tipo de bloque desconocido: {block.type}
-                </p>
-              );
-          }
-        })}
-
-      </div>
-
     </div>
-
   );
 }

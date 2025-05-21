@@ -39,7 +39,7 @@ export const SocialShareBar: FC<Props> = ({
   className = ""
 }) => {
   return (
-    <aside className={`sticky top-24 flex flex-col gap-4 rounded-2xl p-4 shadow-lg ${className}`}>
+    <aside className={`top-15 flex flex-col gap-4 rounded-2xl p-4 shadow-lg ${className}`}>
       {links.map(({ href, label, icon: Icon, bg }) => (
         <a
           key={href}
