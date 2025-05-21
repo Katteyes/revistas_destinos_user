@@ -27,7 +27,7 @@ export default function Header() {
 
   return (
     <header role="banner">
-      <nav className="flex justify-between items-center px-32 pt-8" aria-label="Principal">
+      <nav className="flex justify-between items-center px-8 pt-8" aria-label="Principal">
         <button
           className="bg-[#111C85] p-2 cursor-pointer hover:bg-[#1a2aa0] transition-colors"
           aria-label="Agregar nuevo"
