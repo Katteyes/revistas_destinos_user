@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { useEffect, useState, useRef } from "react";
+=======
+import { useEffect, useState } from 'react';
+import ContentCard from './ContentCard.tsx';
+>>>>>>> miguel
 
 interface Content {
   id: number;
@@ -8,8 +13,14 @@ interface Content {
   publication_date: string;
   main_image_url: string;
   slug: string;
-  category_id: number;
-  content_type_id: number;
+  category: {
+    id: number;
+    name: string;
+  };
+  type: {
+    id: number;
+    name: string;
+  };
 }
 
 export default function Hero() {
@@ -172,6 +183,7 @@ export default function Hero() {
         <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-8">
           Nuestras Noticias
         </h1>
+<<<<<<< HEAD
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-6 gap-y-6">
           {contents.map((content) => (
             <div
@@ -193,6 +205,19 @@ export default function Hero() {
                 </>
               )}
             </div>
+=======
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-6 gap-y-6 px-15 sm:px-8 max-w-6xl mx-auto">
+          {contents.map(content => (
+            <ContentCard
+              key={content.id}
+              title={content.title}
+              main_image_url={content.main_image_url}
+              category={content.category.name}
+              author={content.author}
+              publication_date={content.publication_date}
+              route={`/contenido/${content.slug}`} //Enlace al detalle del contenido
+            />
+>>>>>>> miguel
           ))}
         </div>
       </section>

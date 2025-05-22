@@ -7,8 +7,12 @@ function LandingPage() {
     <>
       <section className="bg-[#FFF8F8] min-h-screen">
         <Header />
+<<<<<<< HEAD
         {/* Carrusel full width sin margen lateral */}
                 <section className="w-full">
+=======
+        <article className="flex mx-auto gap-8 justify-center items-start my-14 flex-wrap">
+>>>>>>> miguel
           <Hero />
         </section>
         {/* Otro contenido con margen lateral */}
