@@ -2,7 +2,7 @@ import Header from '../components/LandingPage/Header';
 import Footer from '../components/LandingPage/Footer';
 import { useEffect, useState } from 'react';
 
-interface Revista {
+interface Magazine {
   id: number;
   title: string;
   issue_number: number; // Número de edición
@@ -12,8 +12,8 @@ interface Revista {
   is_physical: boolean; // Indica si es físico o no
 }
 
-export default function Revistas() {
-  const [revistas, setRevistas] = useState<Revista[]>([]);
+export default function Magazines() {
+  const [magazine, setMagazines] = useState<Magazine[]>([]);
 
   useEffect(() => {
     fetch('https://backend-destinos.impplac.com/api/magazines')
@@ -23,7 +23,7 @@ export default function Revistas() {
         }
         return response.json();
       })
-      .then(data => setRevistas(data.data))
+      .then(data => setMagazines(data.data))
       .catch(error => console.error('Error:', error));
   }, []);
 
@@ -31,25 +31,25 @@ export default function Revistas() {
     <>
       <Header />
       <section className="my-16 ">
-        <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-8">
+        <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-22">
           REVISTAS DESTINOS TURISMO
         </h1>
-        <div className=" justify-center items-center grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-8 lg:gap-16 px-4 lg:px-12 max-w-7xl mx-auto">
+        <div className="justify-center items-center grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-8 lg:gap-16 px-4 lg:px-12 max-w-7xl mx-auto">
           {' '}
-          {revistas.map(revista => (
+          {magazine.map(magazine => (
             <div
-              key={revista.id}
+              key={magazine.id}
               className="bg-[#C783175E] h-92 p-4 rounded-3xl justify-center items-center flex flex-col"
             >
-              {revista.cover_image_url && (
+              {magazine.cover_image_url && (
                 <>
                   <img
-                    src={revista.cover_image_url}
+                    src={magazine.cover_image_url}
                     className=""
-                    alt={`Revista ${revista.title}`}
+                    alt={`Revista ${magazine.title}`}
                   />
 
-                  <span className="text-[#111C85] text-[12px] font-bold">{revista.title}</span>
+                  <span className="text-[#111C85] text-[12px] font-bold">{magazine.title}</span>
                 </>
               )}
             </div>

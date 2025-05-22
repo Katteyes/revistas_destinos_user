@@ -1,7 +1,5 @@
-// src/components/SocialShareBar.tsx
-
-import { FC } from "react";
-import { Facebook,  Mail } from "lucide-react";
+import { FC } from 'react';
+import { Facebook, Mail } from 'lucide-react';
 
 export interface SocialLink {
   href: string;
@@ -18,25 +16,25 @@ interface Props {
 export const SocialShareBar: FC<Props> = ({
   links = [
     {
-      href: "https://facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href),
-      label: "Compartir en Facebook",
+      href: 'https://facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href),
+      label: 'Compartir en Facebook',
       icon: Facebook,
-      bg: "bg-[#3b5998]"
+      bg: 'bg-[#3b5998]',
     },
     {
       href: `mailto:?subject=${document.title}&body=${window.location.href}`,
-      label: "Compartir por Email",
+      label: 'Compartir por Email',
       icon: Mail,
-      bg: "bg-[#3b5998]"
+      bg: 'bg-[#3b5998]',
     },
     {
       href: `mailto:?subject=${document.title}&body=${window.location.href}`,
-      label: "Compartir por Email",
+      label: 'Compartir por Email',
       icon: Mail,
-      bg: "bg-[#3b5998]"
-    }
+      bg: 'bg-[#3b5998]',
+    },
   ],
-  className = ""
+  className = '',
 }) => {
   return (
     <aside className={`top-15 flex flex-col gap-4 rounded-2xl p-4 shadow-lg ${className}`}>
