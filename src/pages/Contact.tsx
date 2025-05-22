@@ -40,7 +40,7 @@ const CONTACT_DATA = [
   },
 ] as const;
 
-export default function Contacto() {
+export default function Contact() {
   return (
     <>
       <Header />

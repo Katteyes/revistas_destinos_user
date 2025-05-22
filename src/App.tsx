@@ -3,7 +3,7 @@ import Register from './pages/Register';
 import LandingPage from './pages/Landing';
 import About from './pages/About';
 import Revistas from './pages/Magazines';
-import Contacto from './pages/Contacto';
+import Contacto from './pages/Contact';
 import ContentPage from './pages/Content';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
