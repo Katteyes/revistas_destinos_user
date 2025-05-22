@@ -78,6 +78,7 @@ export default function Header() {
 
   return (  
     <header role="banner">
+<<<<<<< HEAD
       {/* nav principal */} 
       <nav className="flex justify-between items-center px-5 md:px-32 pt-8" aria-label="Principal">
         {/* REDES SOCIALES*/}
@@ -90,6 +91,15 @@ export default function Header() {
           >
             <img src="/icons/plus.svg" alt="Redes Sociales" aria-hidden="true"  />
           </button>
+=======
+      <nav className="flex justify-between items-center px-8 pt-8" aria-label="Principal">
+        <button
+          className="bg-[#111C85] p-2 cursor-pointer hover:bg-[#1a2aa0] transition-colors"
+          aria-label="Agregar nuevo"
+        >
+          <img src="/icons/plus.svg" alt="" aria-hidden="true" />
+        </button>
+>>>>>>> piero
 
           {dropdownOpen && (
             <div className="absolute left-0 mt-2 w-38 bg-white/98 border border-gray-300 rounded-lg shadow-lg z-[60]">
