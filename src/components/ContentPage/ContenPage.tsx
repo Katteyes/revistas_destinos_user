@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar';
 
-
 interface ContentBlock {
   id: number;
   type: string;
@@ -59,9 +58,11 @@ export default function ContenidoDetalle() {
   return (
     <div className="w-full">
       {/* Imagen principal con overlay azul claro y texto encima */}
-      <div className="relative w-full h-80 md:h-[500px] overflow-hidden
+      <div
+        className="relative w-full h-80 md:h-[500px] overflow-hidden
             opacity-0 translate-x-[-0px]
-            animate-[fadeInLeft_1s_ease-out_forwards]">
+            animate-[fadeInLeft_1s_ease-out_forwards]"
+      >
         <img
           src={contenido.main_image_url}
           alt={contenido.title}
@@ -69,15 +70,16 @@ export default function ContenidoDetalle() {
         />
         <div className="absolute inset-0 bg-[rgba(30,64,175,0.6)] "></div>
         <div className="absolute inset-0 flex flex-col justify-center items-start px-6 md:px-12 text-white ml-35 mr-38">
-          <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold mb-4  hover:scale-103 duration-300">{contenido.title}</h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-blue-200 font-semibold italic hover:scale-103 duration-300">{contenido.subtitle}</p>
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold mb-4  hover:scale-103 duration-300">
+            {contenido.title}
+          </h1>
+          <p className="text-lg md:text-xl lg:text-2xl text-blue-200 font-semibold italic hover:scale-103 duration-300">
+            {contenido.subtitle}
+          </p>
         </div>
       </div>
 
-      {/* CONTENEDOR PRINCIPAL CON POSICIONAMIENTO RELATIVO */}
       <div className="flex justify-center relative">
-        
-        {/* BARRA DE REDES SOCIALES */}
         <div className="hidden lg:block sticky top-90 -ml-26 self-start z-30">
           <SocialShareBar />
         </div>
@@ -88,7 +90,7 @@ export default function ContenidoDetalle() {
       opacity-0 translate-x-[30px]
       animate-[fadeInLeft_1s_ease-out_forwards]"
         >
-          {contenido.blocks.map((block) => {
+          {contenido.blocks.map(block => {
             switch (block.type) {
               case 'paragraph':
                 return (
