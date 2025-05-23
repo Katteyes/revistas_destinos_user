@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import ContentCard from './ContentCard.tsx';
+import { Link } from 'react-router-dom';
+
 
 interface Content {
   id: number;
@@ -120,7 +122,7 @@ export default function Hero() {
         >
           {importantContents.map(content => (
             <div key={content.id} className="min-w-full relative rounded-3xl overflow-hidden">
-              <a href={`/posts/${content.slug}`} className="block w-full h-full ">
+              <Link to={`/contenido/${content.slug}`} className="block w-full h-full ">
                 <img
                   src={content.main_image_url}
                   alt={content.title}
@@ -137,11 +139,10 @@ export default function Hero() {
                     {content.subtitle}
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </div>
-
         {/* Botones */}
         <button
           onClick={prevSlide}
