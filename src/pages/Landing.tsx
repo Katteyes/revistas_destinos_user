@@ -10,6 +10,8 @@ function LandingPage() {
         <article className="flex mx-auto gap-8 justify-center items-start my-14 flex-wrap">
           <Hero />
         </article>
+        {/* Otro contenido con margen lateral */}
+        <article className="flex mx-36 gap-24 justify-center items-start my-14"></article>
         <Footer />
       </section>
     </>
