@@ -33,6 +33,13 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
           viewMode={viewMode}
           defaultScale={SpecialZoomLevel.PageFit}
           localization={es_ES}
+          renderError={() => (
+            <div className="flex items-center justify-center h-full text-center select-none">
+              <div className="bg-gray-400 text-white p-3 rounded-xl shadow-md">
+                <p className="text-sm font-semibold">No se pudo cargar la revista</p>
+              </div>
+            </div>
+          )}
         />
       </div>
     </Worker>
