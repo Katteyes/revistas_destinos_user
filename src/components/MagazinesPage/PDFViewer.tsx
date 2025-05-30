@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { SpecialZoomLevel, Viewer, ViewMode, Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import es_ES from '@react-pdf-viewer/locales/lib/es_ES.json';
@@ -9,32 +9,22 @@ interface PDFViewerProps {
 }
 
 const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
-  const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.DualPageWithCover);
   const defaultLayoutPluginInstance = defaultLayoutPlugin({
     sidebarTabs: () => [],
   });
 
-  useEffect(() => {
-    const width = window.innerWidth;
-    if (width < 640) {
-      setViewMode(ViewMode.SinglePage);
-    } else {
-      setViewMode(ViewMode.DualPageWithCover);
-    }
-  }, []); // Solo al montar
-
   return (
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-      <div className="h-screen rounded-2xl border-2 border-gray-300 overflow-hidden bg-white">
+      <div className="rounded-2xl overflow-hidden bg-[#ece9e9] h-screen p-3">
         <Viewer
           fileUrl={pdfUrl}
           plugins={[defaultLayoutPluginInstance]}
           enableSmoothScroll={false}
-          viewMode={viewMode}
+          viewMode={ViewMode.SinglePage}
           defaultScale={SpecialZoomLevel.PageFit}
           localization={es_ES}
           renderError={() => (
-            <div className="flex items-center justify-center h-full text-center select-none">
+            <div className="flex items-center justify-center text-center select-none">
               <div className="bg-gray-400 text-white p-3 rounded-xl shadow-md">
                 <p className="text-sm font-semibold">No se pudo cargar la revista</p>
               </div>
