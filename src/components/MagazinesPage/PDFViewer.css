@@ -1,0 +1,8 @@
+/* pdf-viewer-overrides.css */
+.rpv-core__viewer {
+    border: none !important;
+    box-shadow: none !important;
+}
+.rpv-default-layout__container {
+    border: none !important;
+}
