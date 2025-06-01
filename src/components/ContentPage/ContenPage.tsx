@@ -81,17 +81,17 @@ export default function ContenidoDetalle() {
       <div className="flex justify-center relative">
 
         {/* BARRA DE REDES SOCIALES */}
-        <div className="hidden lg:block">
-          <div className="sticky top-60 z-30">
-            <SocialShareBar />
-          </div>
-        </div>
+{/* Mobile ShareBar (con flechita) */}
+<div className="fixed bottom-31 right-4 z-30 lg:hidden">
+  <SocialShareBar mobile />
+</div>
 
-        <div
-          className="fixed bottom-75 right-4 z-40 lg:hidden"
-        >
-          <SocialShareBar />
-        </div>
+{/* Desktop ShareBar (sin flechita, como ya lo tienes) */}
+<div className="hidden lg:block">
+  <div className="sticky top-60 z-30">
+    <SocialShareBar />
+  </div>
+</div>
 
         {/* TEXTO DEL CONTENIDO */}
         <div
