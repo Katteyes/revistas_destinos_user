@@ -33,68 +33,67 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center">
-      <div className="bg-[#f5ecdc] h-[auto] p-16 rounded-3xl flex shadow-lg w-[1200px] max-w-full">
+    <div className="min-h-screen bg-[rgba(199, 131, 23, 0.12)] flex items-center justify-center px-4 px-[8%] py-12">
+      <div className="bg-[#f5ecdc] rounded-3xl shadow-lg w-full max-w-6xl flex flex-col md:flex-row p-6 sm:p-10 md:p-16 md:min-h-[600px] gap-10">
+
         {/* Lado Izquierdo */}
-        <div className="w-1/2 pr-10 flex flex-col justify-center ">
+        <div className="md:w-1/2 flex flex-col justify-center items-center text-center md:text-left gap-4">
           <img
             src="/logoDestinos.png"
             alt="Destinos Perú"
-            className="w-[380px] h-auto max-w-none mb-4 -ml-16 "
+            className="w-48 md:w-[380px] md:-ml-2"
           />
-          <h2 className="text-xl font-apple-system mb-2 ">Registrarse</h2>
-          <p className="text-sm text-gray-600 ">Ingresa tus datos correctamente</p>
+          <h2 className="text-2xl font-semibold">REGISTRARSE</h2>
+          <p className="text-sm text-gray-600">Ingresa tus datos correctamente</p>
         </div>
 
         {/* Lado Derecho */}
-        <div className="w-1/2 flex flex-col justify-center p-5">
+        <div className="flex flex-col items-center w-full">
+        <div className="w-full max-w-[320px] sm:max-w-[400px] flex flex-col space-y-4">
           <input
             type="text"
             placeholder="Ingrese tu nombre completo"
-            className="p-3 border rounded-xl w-full bg-[#FFFFFF] border-gray-400 mb-4"
+            className="p-3 border rounded-xl w-full bg-white border-gray-400"
             value={fullName}
             onChange={e => setFullName(e.target.value)}
           />
           <input
             type="email"
             placeholder="Ingresa tu correo electrónico"
-            className="p-3 border rounded-xl w-full bg-[#FFFFFF] border-gray-400 mb-4"
+            className="p-3 border rounded-xl w-full bg-white border-gray-400"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
 
-          <div className="flex space-x-4 mb-4">
+          {/* Country y City */}
+          <div className="flex flex-col sm:flex-row gap-4">
             <input
-              id="select1"
-              name="select1"
-              placeholder="Pais"
-              className="p-3 border rounded-xl w-1/2 bg-[#FFFFFF] border-gray-400"
+              placeholder="País"
+              className="p-3 border rounded-xl w-full bg-white border-gray-400"
               value={country}
               onChange={e => setCountry(e.target.value)}
-            ></input>
-
+            />
             <input
-              id="select2"
-              name="select2"
               placeholder="Ciudad"
-              className="p-3 border rounded-xl w-1/2 bg-[#FFFFFF] border-gray-400"
+              className="p-3 border rounded-xl w-full bg-white border-gray-400"
               value={city}
               onChange={e => setCity(e.target.value)}
-            ></input>
+            />
           </div>
 
-          <div className="flex space-x-4 mb-4">
+          {/* Company y Position */}
+          <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="text"
               placeholder="Empresa"
-              className="p-3 border rounded-xl w-1/2 bg-[#FFFFFF] border-gray-400"
+              className="p-3 border rounded-xl w-full bg-white border-gray-400"
               value={company}
               onChange={e => setCompany(e.target.value)}
             />
             <input
               type="text"
               placeholder="Cargo"
-              className="p-3 border rounded-xl w-1/2 bg-[#FFFFFF] border-gray-400"
+              className="p-3 border rounded-xl w-full bg-white border-gray-400"
               value={position}
               onChange={e => setPosition(e.target.value)}
             />
@@ -103,25 +102,29 @@ export default function Register() {
           <input
             type="text"
             placeholder="Teléfono"
-            className="p-3 border rounded-xl w-full bg-[#FFFFFF] border-gray-400 mb-4"
+            className="p-3 border rounded-xl w-full bg-white border-gray-400"
             value={phone}
             onChange={e => setPhone(e.target.value)}
           />
           <input
             type="password"
             placeholder="Ingresa tu nueva contraseña"
-            className="p-3 border rounded-xl w-full bg-[#FFFFFF] border-gray-400 mb-4"
+            className="p-3 border rounded-xl w-full bg-white border-gray-400"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <button
-            className="bg-blue-900 text-white font-semibold py-3 w-80 ml-22 cursor-pointer"
-            onClick={handleRegister}
-          >
-            REGISTRAR
-          </button>
+
+          <div className="flex justify-center pt-2 mb-8">
+            <button
+              className="bg-blue-900 text-white font-semibold py-3 w-full max-w-[200px] sm:w-[180px] rounded-full"
+              onClick={handleRegister}
+            >
+              REGISTRAR
+            </button>
+          </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
