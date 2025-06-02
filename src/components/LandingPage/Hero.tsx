@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import ContentCard from './ContentCard.tsx';
+import { Link } from 'react-router-dom';
+
 
 interface Content {
   id: number;
@@ -36,7 +38,7 @@ export default function Hero() {
   }, []);
 
   const importantTitles = [
-    'Viajes educativos a la ciudad de Madrid',
+    'Turismo Industrial Construmat abre sus puertas en Barcelona España',
     'Cómo visitar Roma y el Vaticano durante el funeral del papa Francisco',
     'Turismo: Naturaleza que sorprende',
   ];
@@ -109,7 +111,7 @@ export default function Hero() {
     >
       {/* Carrusel */}
       <div
-        className="relative w-full max-w-6xl mx-auto overflow-hidden shadow-lg mt-8 mb-8 rounded-3xl"
+        className="relative w-full overflow-hidden shadow-lg mb-8"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -119,48 +121,55 @@ export default function Hero() {
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {importantContents.map(content => (
-            <div key={content.id} className="min-w-full relative rounded-3xl overflow-hidden">
-              <a href={`/posts/${content.slug}`} className="block w-full h-full ">
+            <div key={content.id} className="min-w-full relative">
+              <Link to={`/contenido/${content.slug}`} className="block w-full h-80 md:h-[500px] overflow-hidden">
                 <img
                   src={content.main_image_url}
                   alt={content.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300 ease-in-out"
+                  className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute bg-black bg-opacity-20 opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-                {/* Fondo semi-transparente y contenedor de descripción responsivo */}
-                <div className="absolute bottom-4 left-4 right-4 bg-gradient-to-t from-white/40 to-transparent backdrop-blur-sm rounded-md p-4 z-10">
-                  <h2 className="text-[#1a1a1a] text-lg sm:text-xl md:text-2xl font-bold">
-                    {content.title}
-                  </h2>
-                  <p className="mt-2 text-sm sm:text-base md:text-lg text-[#333333]">
-                    {content.subtitle}
-                  </p>
-                </div>
-              </a>
+              </Link>
+                {/* Fondo sólido y contenedor de descripción responsivo */}
+          <div
+            className="w-full bg-[#EAD1A9] bg-opacity-90 backdrop-blur-sm p-4 max-h-[25%] overflow-y-auto"
+                  style={{maxHeight: '25%', overflowY: 'auto'}}
+                >
+            <h2
+            className="text-[#111C85] font-bold truncate"
+            style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', lineHeight: '1.2' }}
+                >
+              {content.title}
+            </h2>
+          <p
+            className="mt-2 text-[#333333] overflow-hidden whitespace-nowrap text-ellipsis"
+            style={{ fontSize: 'clamp(0.75rem, 1.5vw, 1.125rem)', lineHeight: '1.2' }}
+              > 
+              {content.subtitle}
+          </p>
+          </div>
             </div>
           ))}
         </div>
-
         {/* Botones */}
+      <button
+        onClick={prevSlide}
+        aria-label="Anterior"
+        className="absolute top-1/2 left-1 sm:left-2 transform -translate-y-1/2 bg-white bg-opacity-10 hover:bg-opacity-50 rounded-full p-1.5 sm:p-2 text-xl sm:text-2xl font-bold select-none transition-colors duration-300"
+      >
+      ‹
+      </button>
         <button
-          onClick={prevSlide}
-          aria-label="Anterior"
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 rounded-full p-3 text-3xl font-bold select-none transition"
-        >
-          ‹
-        </button>
-        <button
-          onClick={nextSlide}
-          aria-label="Siguiente"
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 rounded-full p-3 text-3xl font-bold select-none transition"
-        >
-          ›
-        </button>
+        onClick={nextSlide}
+        aria-label="Siguiente"
+        className="absolute top-1/2 right-1 sm:right-2 transform -translate-y-1/2 bg-white bg-opacity-10 hover:bg-opacity-50 rounded-full p-1.5 sm:p-2 text-xl sm:text-2xl font-bold select-none transition-colors duration-300"
+      >
+      ›
+      </button>
       </div>
 
       {/* Indicadores */}
-      <div className="flex justify-center mt-4 gap-3">
+      <div className="flex justify-center mt-1 gap-3">
         {importantContents.map((_, index) => (
           <button
             key={index}
@@ -174,8 +183,8 @@ export default function Hero() {
       </div>
 
       {/* Noticias */}
-      <section className="my-1 w-full max-w-6xl mx-auto">
-        <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-8">
+      <section className="my-1 w-full max-w-6xl px-8 sm:px-8 mx-auto">
+        <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-9 mt-6">
           Nuestras Noticias
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-6 gap-y-6 px-8 max-w-6xl mx-auto">
