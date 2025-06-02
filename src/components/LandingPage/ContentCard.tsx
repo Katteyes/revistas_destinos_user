@@ -7,7 +7,7 @@ interface ContentCardProps {
   category: string;
   author: string;
   publication_date: string;
-  route: string
+  route: string;
 }
 
 function timeSince(dateString: string) {
@@ -39,7 +39,7 @@ const ContentCard: React.FC<ContentCardProps> = ({
   category,
   author,
   publication_date,
-  route
+  route,
 }) => {
   return (
     <Link

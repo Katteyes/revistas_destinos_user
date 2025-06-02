@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar';
 
-
 interface ContentBlock {
   id: number;
   type: string;
@@ -61,7 +60,8 @@ export default function ContenidoDetalle() {
       {/* Imagen principal con overlay azul claro y texto encima */}
       <div className="relative h-[6ovh] md:h-[55vh] overflow-hidden
             opacity-0 translate-x-[-0px]
-            animate-[fadeInLeft_1s_ease-out_forwards]">
+            animate-[fadeInLeft_1s_ease-out_forwards]"
+      >
         <img
           src={contenido.main_image_url}
           alt={contenido.title}
@@ -72,12 +72,10 @@ export default function ContenidoDetalle() {
             <h1 className="text-base md:text-4xl lg:text-4xl font-bold mb-4  hover:scale-103 duration-300">{contenido.title}</h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-200 font-semibold italic hover:scale-103 duration-300">{contenido.subtitle}</p>
           </div>
-
         </div>
 
       </div>
 
-      {/* CONTENEDOR PRINCIPAL CON POSICIONAMIENTO RELATIVO */}
       <div className="flex justify-center relative">
 
         {/* BARRA DE REDES SOCIALES */}
@@ -92,14 +90,13 @@ export default function ContenidoDetalle() {
     <SocialShareBar />
   </div>
 </div>
-
         {/* TEXTO DEL CONTENIDO */}
         <div
           className="max-w-5xl mt-[-2rem] pt-3 md:pt-1 px-4 md:px-8 space-y-3 text-gray-800 font-sans overflow-hidden
              opacity-0 translate-y-[40px]
              animate-[fadeInLeft_1s_ease-out_forwards]"
         >
-          {contenido.blocks.map((block) => {
+          {contenido.blocks.map(block => {
             switch (block.type) {
               case 'paragraph':
                 return (
