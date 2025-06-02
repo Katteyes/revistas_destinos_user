@@ -39,13 +39,13 @@ export default function Magazines() {
           {magazine.map(magazine => (
             <div
               key={magazine.id}
-              className="bg-[#C783175E] h-92 p-4 rounded-3xl justify-center items-center flex flex-col"
+              className="bg-[#C783175E] h-92 p-4 rounded-3xl justify-center items-center flex flex-col "
             >
               {magazine.cover_image_url && (
                 <>
                   <img
                     src={magazine.cover_image_url}
-                    className=""
+                    className="hover:scale-105 transition duration-300"
                     alt={`Revista ${magazine.title}`}
                   />
 

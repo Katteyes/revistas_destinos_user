@@ -11,7 +11,7 @@ export default function About() {
           }}
           className="flex flex-col max-w-md align-center justify-between border border-solid border-gray-200 dark:border-dark bg-white dark:bg-dark-80 rounded-xl"
         >
-          <div className="flex flex-col px-6 pt-8 mb-10 space-y-5">
+          <div className="flex flex-col px-6 pt-8 mb-10 space-y-5 hover:scale-105 transition duration-300">
             <svg
               width="24"
               height="18"
@@ -43,7 +43,7 @@ export default function About() {
           }}
           className="flex flex-col max-w-md align-center justify-between border border-solid border-gray-200 dark:border-dark bg-white dark:bg-dark-80 rounded-xl"
         >
-          <div className="flex flex-col px-6 pt-8 mb-10 space-y-5">
+          <div className="flex flex-col px-6 pt-8 mb-10 space-y-5 hover:scale-105 transition duration-300">
             <svg
               width="24"
               height="18"
