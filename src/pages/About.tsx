@@ -1,15 +1,17 @@
 import Footer from '../components/LandingPage/Footer';
 import Header from '../components/LandingPage/Header';
+
 export default function About() {
   return (
     <>
       <Header />
-      <div className="flex flex-row justify-center items-center gap-12 h-[680px]">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-12 min-h-[680px] p-4">
+        {/* Card 1 */}
         <div
           style={{
             boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1)',
           }}
-          className="flex flex-col max-w-md align-center justify-between border border-solid border-gray-200 dark:border-dark bg-white dark:bg-dark-80 rounded-xl"
+          className="flex flex-col max-w-md w-full align-center justify-between border border-solid border-gray-200 dark:border-dark bg-white dark:bg-dark-80 rounded-xl"
         >
           <div className="flex flex-col px-6 pt-8 mb-10 space-y-5 hover:scale-105 transition duration-300">
             <svg
@@ -27,7 +29,7 @@ export default function About() {
             </svg>
             <p className="body-medium m-0 dark:text-dark-contrastText" style={{ hyphens: 'auto' }}>
               Informar sobre temas relevantes a nivel internacional, pero también brindar
-              herramientas de gestión para el desarrollo sostenible de los diversos paises, con el
+              herramientas de gestión para el desarrollo sostenible de los diversos países, con el
               objetivo de contribuir a un mercado cada vez más globalizado y competitivo.
             </p>
           </div>
@@ -37,11 +39,15 @@ export default function About() {
             </div>
           </div>
         </div>
+
+
+        {/* Card 2 */}
         <div
           style={{
             boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1)',
           }}
-          className="flex flex-col max-w-md align-center justify-between border border-solid border-gray-200 dark:border-dark bg-white dark:bg-dark-80 rounded-xl"
+
+          className="flex flex-col max-w-md w-full align-center justify-between border border-solid border-gray-200 dark:border-dark bg-white dark:bg-dark-80 rounded-xl"
         >
           <div className="flex flex-col px-6 pt-8 mb-10 space-y-5 hover:scale-105 transition duration-300">
             <svg
