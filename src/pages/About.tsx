@@ -40,11 +40,13 @@ export default function About() {
           </div>
         </div>
 
+
         {/* Card 2 */}
         <div
           style={{
             boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1)',
           }}
+
           className="flex flex-col max-w-md w-full align-center justify-between border border-solid border-gray-200 dark:border-dark bg-white dark:bg-dark-80 rounded-xl"
         >
           <div className="flex flex-col px-6 pt-8 mb-10 space-y-5 hover:scale-105 transition duration-300">
@@ -76,6 +78,7 @@ export default function About() {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
