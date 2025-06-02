@@ -15,48 +15,51 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center">
-      <div className="bg-[#f5ecdc] p-40 rounded-3xl flex shadow-lg w-[1100px] max-w-full">
+    <div className="min-h-screen bg-[rgba(199, 131, 23, 0.12)] flex items-center justify-center px-[8%] py-12">
+      <div className="bg-[#f5ecdc] rounded-3xl shadow-lg w-full max-w-5xl flex flex-col md:flex-row p-6 sm:p-10 md:p-20 md:min-h-[450px] gap-10">
+        
         {/* Lado Izquierdo */}
-        <div className="w-1/2 pr-10 flex flex-col justify-center">
+        <div className="md:w-1/2 flex flex-col justify-center items-center text-center md:text-left gap-4">
           <img
             src="/logoDestinos.png"
             alt="Destinos Perú"
-            className="w-80 mb-4 transform -translate-x-14"
+            className="w-48 md:w-[380px] md:-ml-2"
           />
-          <h2 className="text-xl font-apple-system mb-2">Inicia Sesión</h2>
+          <h2 className="text-2xl font-semibold">Inicia Sesión</h2>
           <p className="text-sm text-gray-600">Ingresa tus datos correctamente</p>
         </div>
 
         {/* Lado Derecho */}
-        <div className="w-1/2 flex flex-col justify-center">
+        <div className="md:w-1/2 flex flex-col justify-center gap-5">
           <input
             type="email"
             placeholder="Ingrese tu correo electrónico"
-            className="mb-4 p-3 border rounded-xl w-full bg-[#FFFFFF] border-gray-400"
+            className="p-3 border rounded-xl w-full bg-white border-gray-400"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Ingresa tu contraseña"
-            className="mb-4 p-3 border rounded-xl w-full bg-[#FFFFFF] border-gray-400"
+            className="p-3 border rounded-xl w-full bg-white border-gray-400"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <button
-            className="bg-blue-900 text-white py-2 font-semibold p-12 ml-20 w-[220px] mb-5"
-            onClick={handleLogin}
-          >
-            INICIAR SESIÓN
-          </button>
 
-          <button
-            className="bg-blue-900 text-white py-2 font-semibold p-12 ml-20 w-[220px]"
-            onClick={() => navigate('/register')}
-          >
-            REGISTRARSE
-          </button>
+          <div className="flex flex-col items-center gap-4 pt-2">
+            <button
+              className="bg-blue-900 text-white font-semibold py-3 w-full max-w-[200px] sm:w-[250px] rounded-full"
+              onClick={handleLogin}
+            >
+              INICIAR SESIÓN
+            </button>
+            <button
+              className="bg-blue-900 text-white font-semibold py-3 w-full max-w-[200px] sm:w-[250px] rounded-full"
+              onClick={() => navigate('/register')}
+            >
+              REGISTRARSE
+            </button>
+          </div>
         </div>
       </div>
     </div>
