@@ -188,7 +188,7 @@ export default function Hero() {
         <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-9 mt-6">
           Nuestras Noticias
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-6 gap-y-6 px-15 sm:px-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-6 gap-y-6 px-8 max-w-6xl mx-auto">
           {contents.map(content => (
             <ContentCard
               key={content.id}
