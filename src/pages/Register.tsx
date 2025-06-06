@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useRegisterStore } from '../stores/authStore';
+import { useState } from 'react';
 
 export default function Register() {
   const {
@@ -22,6 +23,7 @@ export default function Register() {
     register,
   } = useRegisterStore();
   const navigate = useNavigate();
+  const [errorMsg, setErrorMsg] = useState<string>('');
 
   const handleRegister = async () => {
     try {
@@ -29,6 +31,11 @@ export default function Register() {
       navigate('/login');
     } catch (error) {
       console.error('Error en registro:', error);
+      if (error instanceof Error) {
+        setErrorMsg(error.message);
+      } else {
+        setErrorMsg('Error desconocido al registrarse')
+      }
     }
   };
 
@@ -49,82 +56,87 @@ export default function Register() {
 
         {/* Lado Derecho */}
         <div className="flex flex-col items-center w-full">
-        <div className="w-full max-w-[320px] sm:max-w-[400px] flex flex-col space-y-4">
-          <input
-            type="text"
-            placeholder="Ingrese tu nombre completo"
-            className="p-3 border rounded-xl w-full bg-white border-gray-400"
-            value={fullName}
-            onChange={e => setFullName(e.target.value)}
-          />
-          <input
-            type="email"
-            placeholder="Ingresa tu correo electrónico"
-            className="p-3 border rounded-xl w-full bg-white border-gray-400"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-
-          {/* Country y City */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <input
-              placeholder="País"
-              className="p-3 border rounded-xl w-full bg-white border-gray-400"
-              value={country}
-              onChange={e => setCountry(e.target.value)}
-            />
-            <input
-              placeholder="Ciudad"
-              className="p-3 border rounded-xl w-full bg-white border-gray-400"
-              value={city}
-              onChange={e => setCity(e.target.value)}
-            />
-          </div>
-
-          {/* Company y Position */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="w-full max-w-[320px] sm:max-w-[400px] flex flex-col space-y-4">
             <input
               type="text"
-              placeholder="Empresa"
+              placeholder="Ingrese tu nombre completo"
               className="p-3 border rounded-xl w-full bg-white border-gray-400"
-              value={company}
-              onChange={e => setCompany(e.target.value)}
+              value={fullName}
+              onChange={e => setFullName(e.target.value)}
             />
             <input
-              type="text"
-              placeholder="Cargo"
+              type="email"
+              placeholder="Ingresa tu correo electrónico"
               className="p-3 border rounded-xl w-full bg-white border-gray-400"
-              value={position}
-              onChange={e => setPosition(e.target.value)}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             />
-          </div>
 
-          <input
-            type="text"
-            placeholder="Teléfono"
-            className="p-3 border rounded-xl w-full bg-white border-gray-400"
-            value={phone}
-            onChange={e => setPhone(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Ingresa tu nueva contraseña"
-            className="p-3 border rounded-xl w-full bg-white border-gray-400"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+            {/* Country y City */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input
+                placeholder="País"
+                className="p-3 border rounded-xl w-full bg-white border-gray-400"
+                value={country}
+                onChange={e => setCountry(e.target.value)}
+              />
+              <input
+                placeholder="Ciudad"
+                className="p-3 border rounded-xl w-full bg-white border-gray-400"
+                value={city}
+                onChange={e => setCity(e.target.value)}
+              />
+            </div>
 
-          <div className="flex justify-center pt-2 mb-8">
-            <button
-              className="bg-blue-900 text-white font-semibold py-3 w-full max-w-[200px] sm:w-[180px] rounded-full"
-              onClick={handleRegister}
-            >
-              REGISTRAR
-            </button>
+            {/* Company y Position */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="text"
+                placeholder="Empresa"
+                className="p-3 border rounded-xl w-full bg-white border-gray-400"
+                value={company}
+                onChange={e => setCompany(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Cargo"
+                className="p-3 border rounded-xl w-full bg-white border-gray-400"
+                value={position}
+                onChange={e => setPosition(e.target.value)}
+              />
+            </div>
+
+            <input
+              type="text"
+              placeholder="Teléfono"
+              className="p-3 border rounded-xl w-full bg-white border-gray-400"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Ingresa tu nueva contraseña"
+              className="p-3 border rounded-xl w-full bg-white border-gray-400"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+
+            <div className="flex justify-center pt-2 mb-8">
+              <button
+                className="bg-blue-900 text-white font-semibold py-3 w-full max-w-[200px] sm:w-[180px] rounded-full
+              transform transition duration-200 hover:scale-[0.97] active:scale-[0.95] 
+              shadow-md hover:shadow-lg cursor-pointer" 
+                onClick={handleRegister}
+              >
+                REGISTRAR
+              </button>
+            </div>
+            {errorMsg && (
+                <p className="text-red-600 text-sm text-center">{errorMsg}</p>
+              )}
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
