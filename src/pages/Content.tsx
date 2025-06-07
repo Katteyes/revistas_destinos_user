@@ -9,7 +9,7 @@ function ContentPage() {
       <section className="bg-[#FFF8F8] min-h-screen">
         <Header />
         <article className="flex mx-auto gap-8 justify-center items-start my-14 flex-wrap">
-          <Content />
+          <Content/>
         </article>
         <Footer />
       </section>

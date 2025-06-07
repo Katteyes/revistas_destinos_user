@@ -5,6 +5,7 @@ import About from './pages/About';
 import Revistas from './pages/Magazines';
 import Contacto from './pages/Contact';
 import ContentPage from './pages/Content';
+import PrivacyPolicy from './components/Polices/PrivacyPolicy';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/revistas" element={<Revistas />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/contenido/:slug" element={<ContentPage />}></Route>
+        <Route path="/politicas-de-privacidad" element={<PrivacyPolicy />} />
       </Routes>
     </BrowserRouter>
   );

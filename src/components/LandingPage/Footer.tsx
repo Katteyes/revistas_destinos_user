@@ -21,7 +21,9 @@ const Footer = () => {
           <li>©{currentYear} Destinos Turismo</li>
           <li>Todos los derechos reservados</li>
           <li>
-          <span className="mt-1 text-[1rem] sm:text-[0.9rem]">Políticas de Privacidad</span>
+          <a href="/politicas-de-privacidad" className="mt-1 text-[1rem] sm:text-[0.9rem] hover:text-[#fffdfd62]">
+            Políticas de Privacidad
+          </a>
           </li>
         </ul>
         </div>
