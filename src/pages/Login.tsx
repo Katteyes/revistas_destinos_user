@@ -25,7 +25,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-[rgba(199, 131, 23, 0.12)] flex items-center justify-center px-[8%] py-12">
-      <div className="bg-[#f5ecdc] rounded-3xl shadow-lg w-full max-w-5xl flex flex-col md:flex-row p-6 sm:p-10 md:p-20 md:min-h-[450px] gap-10">
+      <div className="bg-[#f5ecdc] rounded-3xl shadow-lg w-full max-w-5xl flex flex-col md:flex-row p-6 sm:p-10 md:p-20 md:min-h-[450px] gap-10 animate-[fadeInLeft_1s_ease-out_forwards]">
 
         {/* Lado Izquierdo */}
         <div className="md:w-1/2 flex flex-col justify-center items-center text-center md:text-left gap-4">
