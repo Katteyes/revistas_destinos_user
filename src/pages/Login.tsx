@@ -1,23 +1,32 @@
 import { useNavigate } from 'react-router-dom';
 import { useLoginStore } from '../stores/authStore';
+import { useState } from 'react';  //se importa para el estado del mensaje de error
 
 export default function Login() {
   const { email, password, setEmail, setPassword, login } = useLoginStore();
   const navigate = useNavigate();
 
+  const [errorMsg, setErrorMsg] = useState<string>(''); // estoy agregando para mostrar el error al usuario
+
   const handleLogin = async () => {
     try {
+      setErrorMsg(''); //limpiar el error anterior
       await login();
       navigate('/');
     } catch (error) {
       console.error('Error en inicio de sesión:', error);
+      if (error instanceof Error) {
+        setErrorMsg(error.message);
+      } else {
+        setErrorMsg('Error desconocido');
+      }
     }
   };
 
   return (
     <div className="min-h-screen bg-[rgba(199, 131, 23, 0.12)] flex items-center justify-center px-[8%] py-12">
-      <div className="bg-[#f5ecdc] rounded-3xl shadow-lg w-full max-w-5xl flex flex-col md:flex-row p-6 sm:p-10 md:p-20 md:min-h-[450px] gap-10">
-        
+      <div className="bg-[#f5ecdc] rounded-3xl shadow-lg w-full max-w-5xl flex flex-col md:flex-row p-6 sm:p-10 md:p-20 md:min-h-[450px] gap-10 animate-[fadeInLeft_1s_ease-out_forwards]">
+
         {/* Lado Izquierdo */}
         <div className="md:w-1/2 flex flex-col justify-center items-center text-center md:text-left gap-4">
           <img
@@ -47,14 +56,21 @@ export default function Login() {
           />
 
           <div className="flex flex-col items-center gap-4 pt-2">
+            {errorMsg && (
+              <p className="text-red-600 text-sm font-medium text-center">
+                {errorMsg}
+              </p>
+            )}
             <button
-              className="bg-blue-900 text-white font-semibold py-3 w-full max-w-[200px] sm:w-[250px] rounded-full"
+              className="bg-blue-900 text-white font-semibold py-3 w-full max-w-[200px] sm:w-[250px] rounded-full transform transition duration-200 hover:scale-[0.97] active:scale-[0.95] 
+              shadow-md hover:shadow-lg cursor-pointer"
               onClick={handleLogin}
             >
               INICIAR SESIÓN
             </button>
             <button
-              className="bg-blue-900 text-white font-semibold py-3 w-full max-w-[200px] sm:w-[250px] rounded-full"
+              className="bg-blue-900 text-white font-semibold py-3 w-full max-w-[200px] sm:w-[250px] rounded-full transform transition duration-200 hover:scale-[0.97] active:scale-[0.95] 
+              shadow-md hover:shadow-lg cursor-pointer"
               onClick={() => navigate('/register')}
             >
               REGISTRARSE
