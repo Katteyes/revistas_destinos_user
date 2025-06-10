@@ -1,20 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
 export default function Header() {
-  const [searchText, setSearchText] = useState('');
-  const [isExpanded, setIsExpanded] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Buscando:', searchText);
-  };
-
-  const Divider = () => <div className="h-5 w-0.5 bg-blue-800" aria-hidden="true" />;
+  const Divider = () => <div className="h-3.5 md:h-5 w-0.5 bg-blue-800" aria-hidden="true" />;
 
   const navigationItems = [
     { label: 'INICIO', href: '/' },
@@ -39,124 +30,61 @@ export default function Header() {
     };
   }, [dropdownOpen]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setMenuOpen(false);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerWidth < 768) {
-        const currentScrollY = window.scrollY;
-        setIsVisible(lastScrollY > currentScrollY || currentScrollY < 10);
-        setLastScrollY(currentScrollY);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
-
-  const socialLinks = [
-    {
-      label: 'Facebook',
-      href: 'https://www.facebook.com/destinosturism?locale=es_LA',
-      iconSrc: '/socials/facebook.svg',
-    },
-    { label: 'Instagram', href: 'https://instagram.com', iconSrc: '/socials/instagram2.svg' },
-    {
-      label: 'Youtube',
-      href: 'https://www.youtube.com/@RevistaDestinosPer%C3%BA',
-      iconSrc: '/socials/youtube.svg',
-    },
-  ];
-
   return (
     <header role="banner">
-      <nav className="flex justify-between items-center px-8 pt-8" aria-label="Principal">
-        <button
-          className="bg-[#111C85] p-2 cursor-pointer hover:bg-[#1a2aa0] transition-colors"
-          aria-label="Agregar nuevo"
-        >
-          <img src="/icons/plus.svg" alt="" aria-hidden="true" />
-        </button>
+      <nav className="w-full px-5 md:px-32 pt-10" aria-label="Principal">
+        <div className="relative w-full flex items-center py-2">
+          <div className="absolute left-1/2 top-5 transform -translate-x-1/2 -translate-y-1/2 flex items-center gap-3 mb-10">
+            <div className="h-18 w-22 md:h-30 md:w-35 lg:h-18 lg:w-40 flex items-center justify-center mr:2 md:mr-5  mt-15">
+              <img src="/logoPerú.png" alt="Logo Perú" className="h-full object-contain" />
+            </div>
 
-        {dropdownOpen && (
-          <div className="absolute left-0 mt-2 w-38 bg-white/98 border border-gray-300 rounded-lg shadow-lg z-[60]">
-            <ul className="flex flex-col">
-              {socialLinks.map(({ label, href, iconSrc }) => (
-                <li key={label} className="flex items-center">
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-4 w-full text-gray-800 transition-all duration-300 hover:bg-[#FFD54F] hover:backdrop-blur-md rounded-md"
-                  >
-                    <img src={iconSrc} alt={label} className="w-6 h-6 " />
-                    <span className="hover:text-[#111C85]">{label}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <a
+              href="/"
+              className="h-25 w-28 md:h-30 md:w-40 lg:h-40 lg:w-50 flex items-center justify-center"
+            >
+              <img src="/logoDestinos.png" alt="Logo destinos" className="h-full object-contain" />
+            </a>
+
+            <div className="h-18 w-22 md:h-30 md:w-35 lg:h-33 lg:w-42 flex items-center justify-center ml:2 md:ml-5 mt-13">
+              <img src="/logoCuba.png" alt="Logo Cuba" className="h-full object-contain" />
+            </div>
           </div>
-        )}
 
-        <div className="w-full text-center">
-          <a href="/">
-            <img
-              src="/logoDestinos.png"
-              className="inline-block h-20 md:h-24"
-              alt="Destinos Logo"
-            />
-          </a>
+          <div className="ml-auto hidden xl:flex">
+            <a
+              href="/login"
+              className="flex text-sm items-center gap-1.5 px-4 py-2 hover:bg-[#f8f0e3]/30 bg-[#FFFFFF] border-[0.1rem] border-[#111C85] rounded-3xl transition-all duration-300 whitespace-nowrap "
+            >
+              <span className="text-[#000000] hover:text-[#111C85]">Iniciar sesión</span>
+              <img
+                src="/icons/user.svg"
+                className="w-auto h-7 p-0.5 bg-[#111C85] rounded-full"
+                alt="user"
+                aria-hidden="true"
+              />
+            </a>
+          </div>
         </div>
-
-        <button aria-label="Iniciar sesión">
-          <a
-            href="/login"
-            className="hidden md:flex text-sm items-center gap-2 px-8 py-2 hover:bg-[#f8f0e3]/30 bg-[#FFFFFF] border-[0.1rem] border-[#111C85] rounded-3xl  overflow-hidden transition-all duration-300 whitespace-nowrap"
-          >
-            <span className="text-[#000000] hover:text-[#111C85]">Iniciar sesión</span>
-            <img
-              src="/icons/user.svg"
-              className="w-auto h-7 p-1 bg-[#111C85] rounded-full"
-              alt=""
-              aria-hidden="true"
-            />
-          </a>
-        </button>
-
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Abrir menú"
-          className="md:hidden flex flex-shrink-0 items-center justify-center w-10 h-10 p-2 cursor-pointer border rounded-[0.2rem] border-[#ffffffdd] bg-[#111C85] hover:bg-[#1a2aa0] transition-colors"
-        >
-          <img src="/icons/menu.svg" alt="Menú" />
-        </button>
       </nav>
+
       <nav
-        className={`flex flex-col items-center justify-center gap-30 py-3 md:top-6 transform transition-transform duration-600
-        ${(menuOpen && isVisible) || 'hidden'} fixed top-25 right-1 md:flex md:flex-row md:gap-30 md:bg-transparent md:relative left-0 z-50 p-4 md:p-0`}
+        className="flex flex-row items-center justify-between gap-5 md:gap-8 top-15 md:top-20 lg:top-15 px-5 bg-transparent relative z-50 p-0 w-full "
         aria-label="Secundaria"
       >
-        <ul className="flex flex-col md:flex-row items-end md:items-center w-full md:w-auto gap-3 md:justify-center px-5 md:px-2  ">
+        <ul className="flex flex-row items-center py-3 gap-1 max-w-4xl mx-auto">
           {navigationItems.map((item, index) => (
-            <>
+            <React.Fragment key={item.label}>
               {index > 0 && (
-                <div className="hidden md:block">
-                  <Divider key={`divider-${index}`} />
+                <div className="block">
+                  <Divider />
                 </div>
               )}
-              <li key={item.label} className="relative group ">
+
+              <li className="relative group">
                 <a
                   href={item.href}
-                  className={`md:text-sm text-[0.7rem] py-2 px-4 rounded-sm shadow-md md:shadow-none transition-colors duration-300 ${
+                  className={`text-[9px] md:text-base lg:text-[18px] py-5 px-[3px] md:px-4 lg:px-6 rounded-sm transition-colors duration-300 ${
                     window.location.pathname === item.href
                       ? 'bg-[#f8f0e3]/20 text-[#111C85]'
                       : 'text-[#000000] hover:bg-[#f8f0e3]/30 hover:text-[#111C85]'
@@ -164,7 +92,7 @@ export default function Header() {
                 >
                   {item.label}
                   <span
-                    className={`hidden md:block absolute left-0 right-0 -bottom-1 h-[2px] bg-[#111C85]/80 rounded-full transition-all duration-300 ${
+                    className={`block absolute -bottom-1 h-[2px] bg-[#111C85]/80 rounded-full transition-all duration-300 ${
                       window.location.pathname === item.href
                         ? 'opacity-100'
                         : 'opacity-0 group-hover:opacity-100'
@@ -172,37 +100,19 @@ export default function Header() {
                   ></span>
                 </a>
               </li>
-            </>
+            </React.Fragment>
           ))}
         </ul>
 
-        {['/', '/revistas'].includes(window.location.pathname) && (
-          <form
-            onSubmit={handleSearch}
-            className={`lg:flex hidden items-center bg-white border-[0.1rem] border-[#111C85] rounded-2xl gap-2 overflow-hidden transition-all duration-300 ${
-              isExpanded ? 'px-4 py-2 w-[18rem]' : 'px-2 py-2 w-12'
-            }`}
-            onFocus={() => setIsExpanded(true)}
-            onBlur={() => {
-              if (searchText === '') setIsExpanded(false);
-            }}
-          >
-            <button type="submit" aria-label="Buscar">
-              <img src="/icons/search.svg" alt="" aria-hidden="true" />
-            </button>
-            <input
-              className={`outline-none transition-all duration-300 ${
-                isExpanded ? 'w-full' : 'w-0'
-              }`}
-              type="text"
-              placeholder="Buscar..."
-              value={searchText}
-              onChange={e => setSearchText(e.target.value)}
-              aria-label="Campo de búsqueda"
-              onBlur={() => setTimeout(() => setIsExpanded(false), 200)}
+        <div className="flex xl:hidden items-center pr-1 md:pr-6 lg:pr-12">
+          <a href="/login" aria-label="Iniciar sesión">
+            <img
+              src="/icons/user.svg"
+              className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 ml-2 bg-[#111C85] rounded-full"
+              alt="Iniciar sesión"
             />
-          </form>
-        )}
+          </a>
+        </div>
       </nav>
     </header>
   );

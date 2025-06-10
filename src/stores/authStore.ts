@@ -45,11 +45,10 @@ export const useLoginStore = create<LoginStore>((set, get) => ({
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });
-    if (!res.ok) throw new Error('Credenciales inválidas');
+    if (!res.ok) throw new Error('El correo u contraseña que ingresaste es incorrecto');
     const data = await res.json();
-    // Ejemplo: data contiene accessToken, refreshToken, full_name, id...
     localStorage.setItem('accessToken', data.accessToken);
-    set({ email: '', password: '' }); // borrar formulario al login
+    set({ email: '', password: '' });
   },
 }));
 
