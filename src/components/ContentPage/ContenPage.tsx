@@ -57,8 +57,8 @@ export default function ContenidoDetalle() {
 
   return (
     <div className="w-full">
-      {/* Imagen principal con overlay azul claro y texto encima */}
-      <div className="relative h-[6ovh] md:h-[55vh] overflow-hidden
+      <div
+        className="relative h-[6ovh] md:h-[55vh] overflow-hidden
             opacity-0 translate-x-[-0px]
             animate-[fadeInLeft_1s_ease-out_forwards]"
       >
@@ -69,28 +69,26 @@ export default function ContenidoDetalle() {
         />
         <div className="absolute inset-0 flex flex-col bg-[rgba(30,64,175,0.6)] ">
           <div className="absolute inset-0 flex flex-col justify-center items-start px-6 am:px-6 md:px-25 text-white">
-            <h1 className="text-base md:text-4xl lg:text-4xl font-bold mb-4  hover:scale-103 duration-300">{contenido.title}</h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-200 font-semibold italic hover:scale-103 duration-300">{contenido.subtitle}</p>
+            <h1 className="text-base md:text-4xl lg:text-4xl font-bold mb-4  hover:scale-103 duration-300">
+              {contenido.title}
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-200 font-semibold italic hover:scale-103 duration-300">
+              {contenido.subtitle}
+            </p>
           </div>
         </div>
-
       </div>
 
       <div className="flex justify-center relative">
+        <div className="fixed bottom-31 right-4 z-30 lg:hidden">
+          <SocialShareBar mobile />
+        </div>
 
-        {/* BARRA DE REDES SOCIALES */}
-{/* Mobile ShareBar (con flechita) */}
-<div className="fixed bottom-31 right-4 z-30 lg:hidden">
-  <SocialShareBar mobile />
-</div>
-
-{/* Desktop ShareBar (sin flechita, como ya lo tienes) */}
-<div className="hidden lg:block">
-  <div className="sticky top-60 z-30">
-    <SocialShareBar />
-  </div>
-</div>
-        {/* TEXTO DEL CONTENIDO */}
+        <div className="hidden lg:block">
+          <div className="sticky top-60 z-30">
+            <SocialShareBar />
+          </div>
+        </div>
         <div
           className="max-w-5xl mt-[-2rem] pt-3 md:pt-1 px-4 md:px-8 space-y-3 text-gray-800 font-sans overflow-hidden
              opacity-0 translate-y-[40px]
@@ -140,7 +138,10 @@ export default function ContenidoDetalle() {
                 );
               case 'list':
                 return (
-                  <ul key={block.id} className="list-disc list-inside pl-4 space-y-1 text-justify text-sm md:text-base">
+                  <ul
+                    key={block.id}
+                    className="list-disc list-inside pl-4 space-y-1 text-justify text-sm md:text-base"
+                  >
                     {block.data.split('|').map((item, index) => (
                       <li key={index}>{item.trim()}</li>
                     ))}
@@ -161,7 +162,6 @@ export default function ContenidoDetalle() {
             }
           })}
         </div>
-
       </div>
     </div>
   );

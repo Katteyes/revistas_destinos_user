@@ -66,11 +66,8 @@ export default function RevistaDetail() {
         <Header />
         <section className="px-6 md:px-12 py-12 max-w-7xl mx-auto mt-0 md:mt-5 lg:mt-5">
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Columna izquierda - detalles */}
             <div className="lg:w-1/4 bg-[#ece9e9] rounded-3xl shadow-lg mx-14 md:mx-28 lg:mx-0 p-4 md:p-6 flex flex-col justify-center lg:h-[600px] animate-[fadeInLeft_1s_ease-out_forwards]">
               <div className="flex flex-col md:flex-row lg:flex-col items-center md:items-center lg:items-center m-1 my-4 gap-4 md:gap-10">
-
-                {/* Imagen */}
                 <div className="flex-shrink-0 flex justify-center md:justify-start lg:justify-center">
                   <img
                     src={magazine.cover_image_url}
@@ -79,7 +76,6 @@ export default function RevistaDetail() {
                   />
                 </div>
 
-                {/* Texto */}
                 <div className="space-y-2 w-full">
                   <h2 className="text-md font-extrabold text-[#111C85] text-center md:text-left lg:text-center mb-3">
                     {magazine.title.toUpperCase()}

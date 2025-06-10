@@ -7,7 +7,6 @@ export default function About() {
       <section className="bg-[#FFF8F8] min-h-screen">
         <Header />
         <div className=" flex flex-col lg:flex-row justify-center items-center gap-8 min-h-[680px] p-16">
-          {/* Card 1 */}
           <div
             style={{
               boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1)',
@@ -44,7 +43,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Card 2 */}
           <div
             style={{
               boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1)',

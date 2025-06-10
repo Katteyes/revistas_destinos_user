@@ -37,13 +37,10 @@ export default function Register() {
   const isValidPassword = (password: string) => password.length >= 6;
 
   const isFormValid =
-    !isEmpty(fullName) &&
-    isValidEmail(email) &&
-    !isEmpty(password) &&
-    isValidPassword(password);
+    !isEmpty(fullName) && isValidEmail(email) && !isEmpty(password) && isValidPassword(password);
 
   const handleBlur = (field: keyof typeof touched) => {
-    setTouched((prev) => ({ ...prev, [field]: true }));
+    setTouched(prev => ({ ...prev, [field]: true }));
   };
 
   const handleRegister = async () => {
@@ -55,7 +52,7 @@ export default function Register() {
       if (error instanceof Error) {
         setErrorMsg(error.message);
       } else {
-        setErrorMsg('Error desconocido al registrarse')
+        setErrorMsg('Error desconocido al registrarse');
       }
     }
   };
@@ -63,27 +60,23 @@ export default function Register() {
   return (
     <div className="min-h-screen bg-[rgba(199, 131, 23, 0.12)] flex items-center justify-center px-4 py-12">
       <div className="bg-[#f5ecdc] rounded-3xl shadow-lg w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center p-6 sm:p-10 md:p-12 gap-10 min-h-[600px] animate-[fadeInLeft_1s_ease-out_forwards]">
-
-        {/* Lado Izquierdo */}
         <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center text-center gap-4">
           <img src="/logoDestinos.png" alt="Destinos Perú" className="w-48 md:w-[380px]" />
           <h2 className="text-2xl font-semibold">Registrarse</h2>
           <p className="text-sm text-gray-600">Ingresa tus datos correctamente</p>
         </div>
 
-        {/* Lado Derecho */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start h-full">
           <div className="w-full max-w-[320px] sm:max-w-[400px] flex flex-col gap-4">
-
-            {/* Nombre */}
             <div className="flex flex-col space-y-1">
               <input
                 type="text"
                 placeholder="Ingrese tu nombre completo"
-                className={`p-3 border rounded-xl bg-white ${touched.fullName && isEmpty(fullName) ? 'border-red-500' : 'border-gray-400'
-                  }`}
+                className={`p-3 border rounded-xl bg-white ${
+                  touched.fullName && isEmpty(fullName) ? 'border-red-500' : 'border-gray-400'
+                }`}
                 value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                onChange={e => setFullName(e.target.value)}
                 onBlur={() => handleBlur('fullName')}
               />
               {touched.fullName && isEmpty(fullName) && (
@@ -91,15 +84,17 @@ export default function Register() {
               )}
             </div>
 
-            {/* Email */}
             <div className="flex flex-col space-y-1">
               <input
                 type="email"
                 placeholder="Ingresa tu correo electrónico"
-                className={`p-3 border rounded-xl bg-white ${touched.email && (!isValidEmail(email) || isEmpty(email)) ? 'border-red-500' : 'border-gray-400'
-                  }`}
+                className={`p-3 border rounded-xl bg-white ${
+                  touched.email && (!isValidEmail(email) || isEmpty(email))
+                    ? 'border-red-500'
+                    : 'border-gray-400'
+                }`}
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 onBlur={() => handleBlur('email')}
               />
               {touched.email && isEmpty(email) && (
@@ -110,71 +105,69 @@ export default function Register() {
               )}
             </div>
 
-            {/* País y ciudad */}
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 placeholder="País"
                 className="p-3 border rounded-xl w-full bg-white border-gray-400"
                 value={country}
-                onChange={(e) => setCountry(e.target.value)}
+                onChange={e => setCountry(e.target.value)}
               />
               <input
                 placeholder="Ciudad"
                 className="p-3 border rounded-xl w-full bg-white border-gray-400"
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
+                onChange={e => setCity(e.target.value)}
               />
             </div>
 
-            {/* Empresa y cargo */}
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 placeholder="Empresa (opcional)"
                 className="p-3 border rounded-xl w-full bg-white border-gray-400"
                 value={company}
-                onChange={(e) => setCompany(e.target.value)}
+                onChange={e => setCompany(e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Cargo (opcional)"
                 className="p-3 border rounded-xl w-full bg-white border-gray-400"
                 value={position}
-                onChange={(e) => setPosition(e.target.value)}
+                onChange={e => setPosition(e.target.value)}
               />
             </div>
 
-            {/* Teléfono */}
             <input
               type="text"
               placeholder="Teléfono"
               className="p-3 border rounded-xl w-full bg-white border-gray-400"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={e => setPhone(e.target.value)}
             />
 
-            {/* Contraseña */}
             <div className="flex flex-col space-y-1">
               <input
                 type="password"
                 placeholder="Ingresa tu nueva contraseña"
-                className={`p-3 border rounded-xl bg-white ${touched.password && (!isValidPassword(password) || isEmpty(password))
+                className={`p-3 border rounded-xl bg-white ${
+                  touched.password && (!isValidPassword(password) || isEmpty(password))
                     ? 'border-red-500'
                     : 'border-gray-400'
-                  }`}
+                }`}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 onBlur={() => handleBlur('password')}
               />
               {touched.password && isEmpty(password) && (
                 <p className="text-red-500 text-sm">Este campo es obligatorio.</p>
               )}
               {touched.password && !isEmpty(password) && !isValidPassword(password) && (
-                <p className="text-red-500 text-sm">La contraseña debe tener al menos 6 caracteres.</p>
+                <p className="text-red-500 text-sm">
+                  La contraseña debe tener al menos 6 caracteres.
+                </p>
               )}
             </div>
 
-            {/* Botón */}
             <div className="flex justify-center pt-2 w-full">
               <button
                 disabled={!isFormValid}
@@ -188,9 +181,7 @@ export default function Register() {
               </button>
             </div>
 
-            {errorMsg && (
-              <p className="text-red-600 text-sm text-center">{errorMsg}</p>
-            )}
+            {errorMsg && <p className="text-red-600 text-sm text-center">{errorMsg}</p>}
           </div>
         </div>
       </div>

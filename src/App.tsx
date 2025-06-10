@@ -9,9 +9,7 @@ import ContentPage from './pages/Content';
 import PrivacyPolicy from './components/Polices/PrivacyPolicy';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
 function App() {
-  // Removed unused Placeholder component
   return (
     <BrowserRouter>
       <Routes>
