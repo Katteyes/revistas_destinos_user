@@ -8,8 +8,6 @@ import Contacto from './pages/Contact';
 import ContentPage from './pages/Content';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 function App() {
   // Removed unused Placeholder component
