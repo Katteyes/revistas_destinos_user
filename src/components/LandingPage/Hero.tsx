@@ -202,6 +202,21 @@ export default function Hero() {
           ))}
         </div>
       </section>
+      {/* Botón de WhatsApp */}
+ <a
+        href="https://wa.me/34664349972"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chatear por WhatsApp"
+        title="Escribenos"
+        className="fixed bottom-4 right-4 z-50 flex items-center justify-center w-15 h-15 rounded-full bg-blue-900 shadow-lg hover:scale-110 transition-transform animate-fade-in"
+      >
+                <img
+          src="/socials/whatsapp.svg" // cambia esta ruta a la tuya
+          alt="WhatsApp"
+          className="w-8 h-8"
+        />
+      </a>
     </section>
   );
 }
