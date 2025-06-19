@@ -57,9 +57,8 @@ export default function ContenidoDetalle() {
 
   return (
     <div className="w-full">
-      {/* Imagen principal con overlay azul claro y texto encima */}
       <div
-        className="relative w-full h-80 md:h-[500px] overflow-hidden
+        className="relative h-[6ovh] md:h-[55vh] overflow-hidden
             opacity-0 translate-x-[-0px]
             animate-[fadeInLeft_1s_ease-out_forwards]"
       >
@@ -68,33 +67,38 @@ export default function ContenidoDetalle() {
           alt={contenido.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[rgba(30,64,175,0.6)] "></div>
-        <div className="absolute inset-0 flex flex-col justify-center items-start px-6 md:px-12 text-white ml-35 mr-38">
-          <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold mb-4  hover:scale-103 duration-300">
-            {contenido.title}
-          </h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-blue-200 font-semibold italic hover:scale-103 duration-300">
-            {contenido.subtitle}
-          </p>
+        <div className="absolute inset-0 flex flex-col bg-[rgba(30,64,175,0.6)] ">
+          <div className="absolute inset-0 flex flex-col justify-center items-start px-6 am:px-6 md:px-25 text-white">
+            <h1 className="text-base md:text-4xl lg:text-4xl font-bold mb-4  hover:scale-103 duration-300">
+              {contenido.title}
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-200 font-semibold italic hover:scale-103 duration-300">
+              {contenido.subtitle}
+            </p>
+          </div>
         </div>
       </div>
 
       <div className="flex justify-center relative">
-        <div className="hidden lg:block sticky top-90 -ml-26 self-start z-30">
-          <SocialShareBar />
+        <div className="fixed bottom-31 right-4 z-30 lg:hidden">
+          <SocialShareBar mobile />
         </div>
 
-        {/* TEXTO DEL CONTENIDO */}
+        <div className="hidden lg:block">
+          <div className="sticky top-60 z-30">
+            <SocialShareBar />
+          </div>
+        </div>
         <div
-          className="max-w-5xl p-4 md:p-8 space-y-4 text-gray-800 overflow-hidden
-      opacity-0 translate-x-[30px]
-      animate-[fadeInLeft_1s_ease-out_forwards]"
+          className="max-w-5xl mt-[-2rem] pt-3 md:pt-1 px-4 md:px-8 space-y-3 text-gray-800 font-sans overflow-hidden
+             opacity-0 translate-y-[40px]
+             animate-[fadeInLeft_1s_ease-out_forwards]"
         >
           {contenido.blocks.map(block => {
             switch (block.type) {
               case 'paragraph':
                 return (
-                  <p key={block.id} className="text-lg leading-relaxed text-justify">
+                  <p key={block.id} className="text-sm md:text-base leading-relaxed text-justify">
                     {block.data}
                   </p>
                 );
@@ -102,7 +106,9 @@ export default function ContenidoDetalle() {
                 return (
                   <h2
                     key={block.id}
-                    className="text-3xl md:text-3xl font-bold text-blue-800 text-justify relative mb-4 pl-4 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-[rgba(199,131,23,0.37)] animate-fade-in"
+                    className="text-lg md:text-2xl font-bold text-blue-800 text-justify relative mb-4 pl-4 
+                       before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 
+                       before:bg-[rgba(199,131,23,0.37)] animate-fade-in"
                   >
                     {block.data}
                   </h2>
@@ -111,7 +117,8 @@ export default function ContenidoDetalle() {
                 return (
                   <p
                     key={block.id}
-                    className="italic text-white text-justify bg-[rgba(30,64,175,100)] px-6 py-4 my-6"
+                    className="italic text-sm md:text-base text-white text-justify 
+                       bg-[rgba(30,64,175,100)] px-6 py-4 my-3"
                   >
                     {block.data}
                   </p>
@@ -131,7 +138,10 @@ export default function ContenidoDetalle() {
                 );
               case 'list':
                 return (
-                  <ul key={block.id} className="list-disc list-inside pl-4 space-y-1 text-justify">
+                  <ul
+                    key={block.id}
+                    className="list-disc list-inside pl-4 space-y-1 text-justify text-sm md:text-base"
+                  >
                     {block.data.split('|').map((item, index) => (
                       <li key={index}>{item.trim()}</li>
                     ))}
@@ -139,7 +149,7 @@ export default function ContenidoDetalle() {
                 );
               case 'bold':
                 return (
-                  <p key={block.id} className="font-bold text-lg text-justify">
+                  <p key={block.id} className="font-bold text-sm md:text-base text-justify">
                     {block.data}
                   </p>
                 );

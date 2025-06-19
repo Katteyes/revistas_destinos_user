@@ -13,7 +13,6 @@ const MagazineCard: React.FC<MagazineCardProps> = ({ title, coverImageUrl, route
       to={route}
       className="bg-[#EAD1A9] rounded-3xl overflow-hidden shadow-lg transition-transform hover:scale-105 duration-300 flex flex-col cursor-pointer group"
     >
-      {/* Imagen de portada */}
       <div className="w-full aspect-[3/4] overflow-hidden relative">
         <img
           src={coverImageUrl}
@@ -23,7 +22,6 @@ const MagazineCard: React.FC<MagazineCardProps> = ({ title, coverImageUrl, route
         <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
       </div>
 
-      {/* Título */}
       <div className="px-4 py-3 flex-grow flex items-center justify-center">
         <span className="block text-[#111C85] text-md font-bold leading-snug text-center line-clamp-2">
           {title}
