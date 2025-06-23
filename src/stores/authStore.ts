@@ -5,10 +5,12 @@ const API_URL = 'https://backend-destinos.impplac.com';
 interface LoginStore {
   email: string;
   password: string;
+  name: string;
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   resetLoginForm: () => void;
   login: () => Promise<void>;
+  logout: () => void;
 }
 
 interface RegisterStore {
@@ -35,6 +37,7 @@ interface RegisterStore {
 export const useLoginStore = create<LoginStore>((set, get) => ({
   email: '',
   password: '',
+  name: localStorage.getItem('subscriberName') || '',  
   setEmail: email => set({ email }),
   setPassword: password => set({ password }),
   resetLoginForm: () => set({ email: '', password: '' }),
@@ -48,8 +51,14 @@ export const useLoginStore = create<LoginStore>((set, get) => ({
     if (!res.ok) throw new Error('El correo u contraseña que ingresaste es incorrecto');
     const data = await res.json();
     localStorage.setItem('accessToken', data.accessToken);
-    set({ email: '', password: '' });
+    localStorage.setItem('subscriberName', data.full_name);
+    set({ email: '', password: '', name: data.full_name, }); // borrar formulario al login
   },
+  logout: () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('subscriberName');
+    set({ name: '', email: '', password: '' });
+  }
 }));
 
 export const useRegisterStore = create<RegisterStore>((set, get) => ({
