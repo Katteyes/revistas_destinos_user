@@ -184,9 +184,9 @@ export default function Hero() {
         ))}
       </div>
 
-      <section className="my-1 w-full px-4 sm:px-6 lg:px-8 mx-auto">
-        <h1 className="text-[#111C85] font-medium text-2xl sm:text-3xl max-w-sm text-center mx-auto mb-6 sm:mb-9 mt-6">
-          Nuestras Noticias
+      <section className="my-2 w-full px-4  sm:px-6 lg:px-8 mx-auto">
+        <h1 className="text-[#111C85] text-center text-4xl font-semibold tracking-tighter leading-[64.8px] max-md:text-3xl mb-8">
+          NUESTRAS NOTICIAS
         </h1>
 
         {/* Contenedor principal con SocialShareBar y Grid */}
