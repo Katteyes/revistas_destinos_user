@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import ContentCard from './ContentCard.tsx';
 import { Link } from 'react-router-dom';
 import SocialShareBar from '../SocialShareBar/SocialShareBar.tsx';
+import ReactPlayer from 'react-player';
+import { motion } from 'framer-motion';
 
 interface Content {
   id: number;
@@ -26,6 +28,11 @@ export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const autoplayInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const [showControls1, setShowControls1] = useState(false);
+  const [showControls2, setShowControls2] = useState(false);
+  const [showControls3, setShowControls3] = useState(false);
+  const [showControls4, setShowControls4] = useState(false);
 
   useEffect(() => {
     fetch('https://backend-destinos.impplac.com/api/contents')
@@ -182,7 +189,58 @@ export default function Hero() {
           />
         ))}
       </div>
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: 'backIn' }}
+        viewport={{ once: true, amount: 0.1 }}
+        className="w-full mt-10 bg-[#323c96] pb-10 mb-4 rounded-3xl lg:rounded-none shadow-xl"
+      >
+        <div className="max-w-7xl mx-auto px-6 sm:px-6 md:px-10 lg:px-8">
+          <h1 className="text-white font-medium text-2xl sm:text-3xl pt-3 my-5 text-center">
+            Contenidos Interactivos
+          </h1>
 
+          <div className="flex flex-col md:flex-col lg:flex-row gap-4 lg:h-[500px]">
+            {/*  Video grande */}
+            <div className="w-full lg:flex-[0_0_70%] h-full">
+              <div
+                className="relative w-full h-full rounded-xl overflow-hidden bg-black shadow-xl"
+                onMouseEnter={() => setShowControls1(true)}
+                onMouseLeave={() => setShowControls1(false)}
+              >
+                <div className="absolute top-2 left-2 bg-[rgba(47,59,92,0.8)] text-white px-3 py-1 rounded-md text-sm font-medium backdrop-blur max-w-[80%] break-words whitespace-normal">
+                  Arequipa - Documental
+                </div>
+                <ReactPlayer
+                  url="https://backend-destinos.impplac.com/public/uploads/videos/AREQUIPA - Documental.mp4"
+                  width="100%"
+                  height="100%"
+                  controls={showControls1}
+                  playing={true}
+                  muted={true}
+                  loop={true}
+                />
+              </div>
+            </div>
+
+            {/* Videos pequeños */}
+            <div className="w-full flex flex-col gap-4 md:flex-row md:h-[200px] lg:flex-col lg:flex-[0_0_30%] lg:h-full">
+              <div
+                className="relative flex-1 rounded-xl overflow-hidden bg-black shadow-xl"
+                onMouseEnter={() => setShowControls2(true)}
+                onMouseLeave={() => setShowControls2(false)}
+              >
+                <div className="absolute top-2 left-2 bg-[rgba(47,59,92,0.8)] text-white px-3 py-1 rounded-md text-sm font-medium backdrop-blur max-w-[80%] break-words whitespace-normal">
+                  Cuba - Video General
+                </div>
+                <ReactPlayer
+                  url="https://backend-destinos.impplac.com/public/uploads/videos/CUBA - Video General.mp4"
+                  width="100%"
+                  height="100%"
+                  controls={showControls2}
+                />
+              </div>
       <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-30 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[350px] z-20">
         <Link
           to="/register"
@@ -252,7 +310,7 @@ export default function Hero() {
             <SocialShareBar mobile={true} />
           </div>
         </div>
-      </section>
+      </motion.section>
     </section>
   );
 }

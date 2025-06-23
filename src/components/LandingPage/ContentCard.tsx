@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {CircleUser, Clock} from 'lucide-react';
 
 interface ContentCardProps {
   title: string;
@@ -27,7 +28,7 @@ function timeSince(dateString: string) {
   for (const interval of intervals) {
     const count = Math.floor(seconds / interval.seconds);
     if (count >= 1) {
-      return `Hace ${count} ${interval.label}${count > 1 ? 's' : ''}`;
+      return `${count} ${interval.label}${count > 1 ? 's' : ''}`;
     }
   }
   return 'Hace unos segundos';
@@ -67,39 +68,14 @@ const ContentCard: React.FC<ContentCardProps> = ({
         </span>
       </div>
 
-      <div className="px-6 pb-4 flex justify-between items-center text-xs font-semibold text-gray-600">
+      <div className="px-4 pb-4 flex justify-between items-center text-xs font-semibold text-gray-600">
         <div className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M18 20a6 6 0 0 0-12 0" />
-            <circle cx="12" cy="10" r="4" />
-            <circle cx="12" cy="12" r="10" />
-          </svg>
+          <CircleUser className="w-5"/>
           <p>{author}</p>
         </div>
 
         <div className="flex items-center gap-1 text-gray-600">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="12 6 12 12 16 14" />
-          </svg>
+          <Clock className="w-5"/>
           <span>{timeSince(publication_date)}</span>
         </div>
       </div>
