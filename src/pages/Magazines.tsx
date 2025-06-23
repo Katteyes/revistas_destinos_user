@@ -1,19 +1,22 @@
 import Header from '../components/LandingPage/Header';
 import Footer from '../components/LandingPage/Footer';
 import { useEffect, useState } from 'react';
+import MagazineCard from '../components/MagazinesPage/MagazineCard';
 
 interface Magazine {
   id: number;
   title: string;
-  issue_number: number; // Número de edición
-  publication_date: string; // Fecha de publicación en formato ISO
-  cover_image_url: string; // URL de la imagen de portada
-  pdf_url: string; // URL del PDF
-  is_physical: boolean; // Indica si es físico o no
+  issue_number: number;
+  publication_date: string;
+  cover_image_url: string;
+  pdf_url: string;
+  is_physical: boolean;
 }
 
 export default function Magazines() {
-  const [magazine, setMagazines] = useState<Magazine[]>([]);
+  const [magazines, setMagazines] = useState<Magazine[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('https://backend-destinos.impplac.com/api/magazines')
@@ -23,40 +26,77 @@ export default function Magazines() {
         }
         return response.json();
       })
-      .then(data => setMagazines(data.data))
-      .catch(error => console.error('Error:', error));
+      .then(data => {
+        setMagazines(data.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        setError('No se pudieron cargar las revistas');
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
+    return (
+      <>
+        <section className="bg-[#FFF8F8]">
+          <Header />
+          <section className="my-16 px-8">
+            <div className="flex justify-center items-center h-64">
+              <div className="text-[#111C85] text-lg">Cargando revistas...</div>
+            </div>
+          </section>
+          <Footer />
+        </section>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <section className="bg-[#FFF8F8]">
+          <Header />
+          <section className="my-16 px-8">
+            <div className="flex justify-center items-center h-64">
+              <div className="text-red-600 text-lg">{error}</div>
+            </div>
+          </section>
+          <Footer />
+        </section>
+      </>
+    );
+  }
 
   return (
     <>
-      <Header />
-      <section className="my-16 ">
-        <h1 className="text-[#111C85] font-medium text-3xl max-w-sm text-center mx-auto mb-22">
-          REVISTAS DESTINOS TURISMO
-        </h1>
-        <div className="justify-center items-center grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-8 lg:gap-16 px-4 lg:px-12 max-w-7xl mx-auto">
-          {' '}
-          {magazine.map(magazine => (
-            <div
-              key={magazine.id}
-              className="bg-[#C783175E] h-92 p-4 rounded-3xl justify-center items-center flex flex-col "
-            >
-              {magazine.cover_image_url && (
-                <>
-                  <img
-                    src={magazine.cover_image_url}
-                    className="hover:scale-105 transition duration-300"
-                    alt={`Revista ${magazine.title}`}
-                  />
+      <section className="bg-[#FFF8F8]">
+        <Header />
+        <section className="my-16 px-8">
+          <h1 className="text-[#111C85] font-medium text-3xl text-center mb-10">
+            REVISTAS DESTINOS TURISMO
+          </h1>
 
-                  <span className="text-[#111C85] text-[12px] font-bold">{magazine.title}</span>
-                </>
-              )}
+          {magazines.length === 0 ? (
+            <div className="text-center text-gray-600 py-12">
+              No hay revistas disponibles en este momento.
             </div>
-          ))}
-        </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-6xl mx-auto px-12 sm:px-0 md:px-0 lg:px-0">
+              {magazines.map(mag => (
+                <MagazineCard
+                  key={mag.id}
+                  title={mag.title}
+                  coverImageUrl={mag.cover_image_url}
+                  route={`/revistas/${mag.id}`}
+                />
+              ))}
+            </div>
+          )}
+        </section>
+        <Footer />
       </section>
-      <Footer />
     </>
   );
 }

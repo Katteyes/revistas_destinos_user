@@ -1,4 +1,4 @@
-import { memo  } from 'react';
+import { memo } from 'react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,6 +13,7 @@ const Footer = () => {
             className="w-auto h-15 sm:h-20 rounded-md"
             alt="Logo Destinos"
           />
+
           <span className="mt-1 text-[0.8rem] sm:text-[1rem]">Explora. Inspírate. Descubre el mundo.</span>
         </div>
 
@@ -26,7 +27,7 @@ const Footer = () => {
           </a>
           </li>
         </ul>
-        </div>
+      </div>
     </footer>
   );
 };
