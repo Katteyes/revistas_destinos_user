@@ -31,8 +31,6 @@ export default function Hero() {
 
   const [showControls1, setShowControls1] = useState(false);
   const [showControls2, setShowControls2] = useState(false);
-  const [showControls3, setShowControls3] = useState(false);
-  const [showControls4, setShowControls4] = useState(false);
 
   useEffect(() => {
     fetch('https://backend-destinos.impplac.com/api/contents')
