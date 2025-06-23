@@ -184,9 +184,8 @@ export default function Hero() {
             key={index}
             onClick={() => goToSlide(index)}
             aria-label={`Ir a la diapositiva ${index + 1}`}
-            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-              index === currentIndex ? 'bg-[#111C85]' : 'bg-gray-300'
-            }`}
+            className={`w-3 h-3 rounded-full transition-colors duration-300 ${index === currentIndex ? 'bg-[#111C85]' : 'bg-gray-300'
+              }`}
           />
         ))}
       </div>
@@ -242,51 +241,41 @@ export default function Hero() {
                   controls={showControls2}
                 />
               </div>
-
-              <div
-                className="relative flex-1 rounded-xl overflow-hidden bg-black shadow-xl"
-                onMouseEnter={() => setShowControls3(true)}
-                onMouseLeave={() => setShowControls3(false)}
-              >
-                <div className="absolute top-2 left-2 bg-[rgba(47,59,92,0.8)] text-white px-3 py-1 rounded-md text-sm font-medium backdrop-blur max-w-[80%] break-words whitespace-normal">
-                  Mapping Turístico - Miraflores
-                </div>
-                <ReactPlayer
-                  url="https://backend-destinos.impplac.com/public/uploads/videos/Mapping turistico  - Mirtaflores.mp4"
-                  width="100%"
-                  height="100%"
-                  controls={showControls3}
-                />
-              </div>
-
-              <div
-                className="relative flex-1 rounded-xl overflow-hidden bg-black shadow-xl"
-                onMouseEnter={() => setShowControls4(true)}
-                onMouseLeave={() => setShowControls4(false)}
-              >
-                <div className="absolute top-2 left-2 bg-[rgba(47,59,92,0.8)] text-white px-3 py-1 rounded-md text-sm font-medium backdrop-blur max-w-[80%] break-words whitespace-normal">
-                  Piura - Documental
-                </div>
-                <ReactPlayer
-                  url="https://backend-destinos.impplac.com/public/uploads/videos/Piura - Documental Destinos Peru (2).mp4"
-                  width="100%"
-                  height="100%"
-                  controls={showControls4}
-                />
-              </div>
-            </div>
+      <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-30 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[350px] z-20">
+        <Link
+          to="/register"
+          className="group block max-w-[280px] sm:max-w-xs w-full rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-2xl transition-all duration-300scale-75 sm:scale-90 md:scale-95 lg:scale-100">
+          <div className="w-full h-20 sm:h-24 md:h-26 lg:h-28 overflow-hidden">
+            <img
+              src="/Boton.png"
+              alt="Regístrate"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
           </div>
-        </div>
-      </motion.section>
 
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: 'backIn' }}
-        viewport={{ once: true, amount: 0.05 }}
-        className="my-1 w-full px-4 sm:px-6 lg:px-8 mx-auto"
-      >
-        <h1 className="text-[#111C85] font-bold text-2xl sm:text-3xl max-w-sm text-center mx-auto mb-6 sm:mb-9 mt-6">
+          <div className="p-2 sm:p-2.5 md:p-3 text-center bg-white">
+            <p className="text-xs sm:text-sm text-gray-700 font-medium leading-tight sm:leading-normal">
+              <span className="font-bold text-[#111C85]">REGÍSTRATE</span> y no te pierdas de las revistas más novedosas del momento!
+            </p>
+          </div>
+
+          <div className="ml-52 sm:ml-56 md:ml-60 lg:ml-65">
+            <svg
+              className="w-6 h-4 sm:w-8 h-5 md:w-9 h-5 lg:w-10 h-6 text-[#111C85] transform -translate-y-6 sm:-translate-y-7 md:-translate-y-7 lg:-translate-y-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </div>
+        </Link>
+      </div>
+
+      <section className="my-1 w-full px-4 sm:px-6 lg:px-8 mx-auto">
+        <h1 className="text-[#111C85] font-medium text-2xl sm:text-3xl max-w-sm text-center mx-auto mb-6 sm:mb-9 mt-6">
           Nuestras Noticias
         </h1>
 
