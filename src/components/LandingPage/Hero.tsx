@@ -240,7 +240,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-30 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[350px] z-20">
+          <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-29 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[270px] z-20">
             <Link
               to="/register"
               className="group block max-w-[280px] sm:max-w-xs w-full rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-2xl transition-all duration-300scale-75 sm:scale-90 md:scale-95 lg:scale-100"
