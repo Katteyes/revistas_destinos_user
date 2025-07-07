@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState, useRef } from 'react';
 import ContentCard from './ContentCard.tsx';
 import { Link } from 'react-router-dom';
@@ -253,6 +254,22 @@ export default function Hero() {
               </div>
             </div>
           </div>
+        </div>
+      </motion.section>
+
+      {/* REGÍSTRATE */}
+      <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-30 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[350px] z-20">
+        <Link
+          to="/register"
+          className="group block max-w-[280px] sm:max-w-xs w-full rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-2xl transition-all duration-300 scale-75 sm:scale-90 md:scale-95 lg:scale-100"
+        >
+          <div className="w-full h-20 sm:h-24 md:h-26 lg:h-28 overflow-hidden">
+            <img
+              src="/Boton.png"
+              alt="Regístrate"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
           <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-30 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[350px] z-20">
             <Link
               to="/register"
@@ -273,23 +290,22 @@ export default function Hero() {
                 </p>
               </div>
 
-              <div className="ml-52 sm:ml-56 md:ml-60 lg:ml-65">
-                <svg
-                  className="w-6 h-4 sm:w-8 h-5 md:w-9 h-5 lg:w-10 h-6 text-[#111C85] transform -translate-y-6 sm:-translate-y-7 md:-translate-y-7 lg:-translate-y-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </Link>
+          <div className="ml-52 sm:ml-56 md:ml-60 lg:ml-65">
+            <svg
+              className="w-6 h-4 sm:w-8 h-5 md:w-9 h-5 lg:w-10 h-6 text-[#111C85] transform -translate-y-6 sm:-translate-y-7 md:-translate-y-7 lg:-translate-y-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </div>
         </Link>
       </div>
 
-      <section className="my-1 w-full px-0 sm:px-4 md:px-6 lg:px-8 mx-auto">
+      {/* Noticias */}
+      <section className="my-1 w-full px-4 sm:px-6 lg:px-8 mx-auto">
         <h1 className="text-[#111C85] font-medium text-2xl sm:text-3xl max-w-sm text-center mx-auto mb-6 sm:mb-9 mt-6">
           Nuestras Noticias
         </h1>
@@ -315,24 +331,11 @@ export default function Hero() {
               </div>
             </div>
           </div>
+
           <div className="xl:hidden fixed right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50">
             <SocialShareBar mobile={true} />
           </div>
         </div>
       </section>
-
-      {/* Botón de WhatsApp */}
-      <a
-        href="https://wa.me/34664349972"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chatear por WhatsApp"
-        title="Escribenos"
-        className="fixed bottom-4 right-4 z-50 flex items-center justify-center w-15 h-15 rounded-full bg-blue-900 shadow-lg hover:scale-110 transition-transform animate-fade-in"
-      >
-        <img
-          src="/socials/whatsapp.svg" // cambia esta ruta a la tuya
-          alt="WhatsApp"
-          className="w-8 h-8"
-        />
-      </a>
+  );
+}

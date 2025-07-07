@@ -8,7 +8,7 @@ const Contact: React.FC = () => {
     <>
       <Header />
      {/* TÍTULO CON FONDO CON OVERLAY + FADE-IN */}
-<div className="relative mt-20">
+<div className="relative mt-15">
   <div
     className="bg-cover bg-center py-24 md:py-40 px-4 text-center"
     style={{
