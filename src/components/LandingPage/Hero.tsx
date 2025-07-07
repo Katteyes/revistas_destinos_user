@@ -32,8 +32,6 @@ export default function Hero() {
 
   const [showControls1, setShowControls1] = useState(false);
   const [showControls2, setShowControls2] = useState(false);
-  const [showControls3, setShowControls3] = useState(false);
-  const [showControls4, setShowControls4] = useState(false);
 
   useEffect(() => {
     fetch('https://backend-destinos.impplac.com/api/contents')
@@ -46,9 +44,9 @@ export default function Hero() {
   }, []);
 
   const importantTitles = [
-    'LIGNA 2025 ha celebrado 50 años',
-    'Cómo visitar Roma y el Vaticano durante el funeral del papa Francisco',
-    'Turismo: Naturaleza que sorprende',
+    'Destinos Turísticos Chilenos 2025: Astroturismo, Esquí y Enoturismo',
+    'Turismo en Perú crece y PromPerú impulsa plan 2025',
+    'El restaurante peruano Maido acaba de ser elegido el mejor del Mundo 2025',
   ];
 
   const importantContents = contents.filter(content => importantTitles.includes(content.title));
@@ -113,16 +111,23 @@ export default function Hero() {
 
   return (
     <section
-      className="w-full flex flex-col items-center justify-center"
+      className="w-full flex flex-col items-center justify-center mt-1 sm:mt-2 md:mt-2"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div
-        className="relative overflow-hidden shadow-lg mx-auto w-full max-w-screen-lg rounded-2xl"
-        style={{ width: '100%', height: '309px' }}
+        className="relative overflow-hidden shadow-lg w-full sm:w-[95%] sm:max-w-3xl md:max-w-5xl lg:max-w-6xl mx-auto rounded-2xl"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
+        style={{
+          height:
+            window.innerWidth <= 640
+              ? '150px' 
+              : window.innerWidth <= 768
+              ? '180px' 
+              : '400px', 
+        }}
       >
         <div
           className="flex transition-transform duration-700 ease-in-out"
@@ -132,17 +137,23 @@ export default function Hero() {
             <div
               key={content.id}
               className="min-w-full flex flex-col relative rounded-2xl"
-              style={{ height: '309px' }}
+              style={{
+                height:
+                  window.innerWidth <= 640
+                    ? '150px' 
+                    : window.innerWidth <= 768
+                    ? '180px' 
+                    : '400px', 
+              }}
             >
               <Link
                 to={`/contenido/${content.slug}`}
-                className="block w-full h-80 md:h-[500px] overflow-hidden"
+                className="block w-full h-full overflow-hidden"
               >
                 <img
                   src={content.main_image_url}
                   alt={content.title}
-                  className="w-full h-full rounded-2xl"
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
+                  className="w-full h-full rounded-2xl object-cover object-center scale-[1.01] sm:scale-[1.02] lg:scale-[1.03] transition-all duration-500"
                   loading="lazy"
                 />
               </Link>
@@ -185,8 +196,9 @@ export default function Hero() {
             key={index}
             onClick={() => goToSlide(index)}
             aria-label={`Ir a la diapositiva ${index + 1}`}
-            className={`w-3 h-3 rounded-full transition-colors duration-300 ${index === currentIndex ? 'bg-[#111C85]' : 'bg-gray-300'
-              }`}
+            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+              index === currentIndex ? 'bg-[#111C85]' : 'bg-gray-300'
+            }`}
           />
         ))}
       </div>
@@ -203,7 +215,6 @@ export default function Hero() {
           </h1>
 
           <div className="flex flex-col md:flex-col lg:flex-row gap-4 lg:h-[500px]">
-            {/*  Video grande */}
             <div className="w-full lg:flex-[0_0_70%] h-full">
               <div
                 className="relative w-full h-full rounded-xl overflow-hidden bg-black shadow-xl"
@@ -225,7 +236,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Videos pequeños */}
             <div className="w-full flex flex-col gap-4 md:flex-row md:h-[200px] lg:flex-col lg:flex-[0_0_30%] lg:h-full">
               <div
                 className="relative flex-1 rounded-xl overflow-hidden bg-black shadow-xl"
@@ -260,12 +270,25 @@ export default function Hero() {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
+          <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-30 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[350px] z-20">
+            <Link
+              to="/register"
+              className="group block max-w-[280px] sm:max-w-xs w-full rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-2xl transition-all duration-300scale-75 sm:scale-90 md:scale-95 lg:scale-100"
+            >
+              <div className="w-full h-20 sm:h-24 md:h-26 lg:h-28 overflow-hidden">
+                <img
+                  src="/Boton.png"
+                  alt="Regístrate"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
 
-          <div className="p-2 sm:p-2.5 md:p-3 text-center bg-white">
-            <p className="text-xs sm:text-sm text-gray-700 font-medium leading-tight sm:leading-normal">
-              <span className="font-bold text-[#111C85]">REGÍSTRATE</span> y no te pierdas de las revistas más novedosas del momento!
-            </p>
-          </div>
+              <div className="p-2 sm:p-2.5 md:p-3 text-center bg-white">
+                <p className="text-xs sm:text-sm text-gray-700 font-medium leading-tight sm:leading-normal">
+                  <span className="font-bold text-[#111C85]">REGÍSTRATE</span> y no te pierdas de
+                  las revistas más novedosas del momento!
+                </p>
+              </div>
 
           <div className="ml-52 sm:ml-56 md:ml-60 lg:ml-65">
             <svg
@@ -286,7 +309,6 @@ export default function Hero() {
         <h1 className="text-[#111C85] font-medium text-2xl sm:text-3xl max-w-sm text-center mx-auto mb-6 sm:mb-9 mt-6">
           Nuestras Noticias
         </h1>
-
         <div className="relative max-w-7xl mx-auto">
           <div className="flex gap-4 lg:gap-8 items-start">
             <div className="hidden xl:block sticky top-24 z-10 flex-shrink-0">
@@ -315,6 +337,5 @@ export default function Hero() {
           </div>
         </div>
       </section>
-    </section>
   );
 }

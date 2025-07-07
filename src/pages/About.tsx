@@ -6,7 +6,7 @@ export default function About() {
     <>
       <section className="bg-[#FFF8F8] min-h-screen">
         <Header />
-        <div className=" flex flex-col lg:flex-row justify-center items-center gap-8 min-h-[680px] p-16">
+        <div className=" flex flex-col md:flex-row justify-center items-center gap-8 min-h-[680px] p-8 md:p-16 mt-6 md:mt-0">
           <div
             style={{
               boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1)',
@@ -28,7 +28,7 @@ export default function About() {
                 ></path>
               </svg>
               <p
-                className="body-medium m-0 dark:text-dark-contrastText"
+                className="text-[12px] md:text-base m-0 dark:text-dark-contrastText"
                 style={{ hyphens: 'auto' }}
               >
                 Informar sobre temas relevantes a nivel internacional, pero también brindar
@@ -36,9 +36,9 @@ export default function About() {
                 objetivo de contribuir a un mercado cada vez más globalizado y competitivo.
               </p>
             </div>
-            <div className="flex space-x-2 bg-gray-50 dark:bg-dark-70 dark:text-dark-contrastText px-6 pt-6 pb-5 rounded-b-xl">
+            <div className="flex space-x-2 bg-gray-50 dark:bg-dark-70 dark:text-dark-contrastText px-6 pt-2 md:pt-6 pb-5 rounded-b-xl">
               <div className="flex flex-col justify-center">
-                <p className="heading-six m-0 font-bold  text-[#111C85] ">NOSOTROS</p>
+                <p className="heading-six m-0 text-sm md:text-lg font-bold  text-[#111C85] ">NOSOTROS</p>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function About() {
                 ></path>
               </svg>
               <p
-                className="body-medium m-0 dark:text-dark-contrastText"
+                className="text-[12px] md:text-base m-0 dark:text-dark-contrastText"
                 style={{ hyphens: 'auto' }}
               >
                 Diseñamos ediciones especiales dedicadas a países y regiones que celebran
@@ -74,9 +74,9 @@ export default function About() {
                 temas de interés local e internacional.
               </p>
             </div>
-            <div className="flex space-x-2 bg-gray-50 dark:bg-dark-70 dark:text-dark-contrastText px-6 pt-4 pb-5 rounded-b-xl">
+            <div className="flex space-x-2 bg-gray-50 dark:bg-dark-70 dark:text-dark-contrastText px-6 pt-2 md:pt-6 pb-5 rounded-b-xl">
               <div className="flex flex-col justify-center">
-                <p className="heading-six m-0 font-bold  text-[#111C85] ">EDICIONES</p>
+                <p className="heading-six m-0 font-bold text-sm md:text-lg text-[#111C85] ">EDICIONES</p>
               </div>
             </div>
           </div>
