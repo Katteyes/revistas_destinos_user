@@ -118,12 +118,7 @@ export default function Hero() {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
         style={{
-          height:
-            window.innerWidth <= 640
-              ? '150px' 
-              : window.innerWidth <= 768
-              ? '180px' 
-              : '400px', 
+          height: window.innerWidth <= 640 ? '150px' : window.innerWidth <= 768 ? '180px' : '400px',
         }}
       >
         <div
@@ -136,11 +131,7 @@ export default function Hero() {
               className="min-w-full flex flex-col relative rounded-2xl"
               style={{
                 height:
-                  window.innerWidth <= 640
-                    ? '150px' 
-                    : window.innerWidth <= 768
-                    ? '180px' 
-                    : '400px', 
+                  window.innerWidth <= 640 ? '150px' : window.innerWidth <= 768 ? '180px' : '400px',
               }}
             >
               <Link
@@ -199,7 +190,7 @@ export default function Hero() {
           />
         ))}
       </div>
-      <InteractiveVideos/>
+      <InteractiveVideos />
       <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-30 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[350px] z-20">
         <Link
           to="/register"
@@ -215,8 +206,8 @@ export default function Hero() {
 
           <div className="p-2 sm:p-2.5 md:p-3 text-center bg-white">
             <p className="text-xs sm:text-sm text-gray-700 font-medium leading-tight sm:leading-normal">
-              <span className="font-bold text-[#111C85]">REGÍSTRATE</span> y no te pierdas de
-              las revistas más novedosas del momento!
+              <span className="font-bold text-[#111C85]">REGÍSTRATE</span> y no te pierdas de las
+              revistas más novedosas del momento!
             </p>
           </div>
 
@@ -265,5 +256,6 @@ export default function Hero() {
           </div>
         </div>
       </section>
+    </section>
   );
 }
