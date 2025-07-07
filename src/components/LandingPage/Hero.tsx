@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState, useRef } from 'react';
 import ContentCard from './ContentCard.tsx';
 import { Link } from 'react-router-dom';
@@ -40,9 +41,9 @@ export default function Hero() {
   }, []);
 
   const importantTitles = [
-    'LIGNA 2025 ha celebrado 50 años',
-    'Cómo visitar Roma y el Vaticano durante el funeral del papa Francisco',
-    'Turismo: Naturaleza que sorprende',
+    'Destinos Turísticos Chilenos 2025: Astroturismo, Esquí y Enoturismo',
+    'Turismo en Perú crece y PromPerú impulsa plan 2025',
+    'El restaurante peruano Maido acaba de ser elegido el mejor del Mundo 2025',
   ];
 
   const importantContents = contents.filter(content => importantTitles.includes(content.title));
@@ -106,17 +107,24 @@ export default function Hero() {
   if (contents.length === 0) return <p>Cargando noticias...</p>;
 
   return (
-    <motion.section
-      className="w-full flex flex-col items-center justify-center"
+    <section
+      className="w-full flex flex-col items-center justify-center mt-1 sm:mt-2 md:mt-2"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div
-        className="relative overflow-hidden shadow-lg mx-auto w-full max-w-screen-lg rounded-2xl"
-        style={{ width: '100%', height: '309px' }}
+        className="relative overflow-hidden shadow-lg w-full sm:w-[95%] sm:max-w-3xl md:max-w-5xl lg:max-w-6xl mx-auto rounded-2xl"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
+        style={{
+          height:
+            window.innerWidth <= 640
+              ? '150px' 
+              : window.innerWidth <= 768
+              ? '180px' 
+              : '400px', 
+        }}
       >
         <div
           className="flex transition-transform duration-700 ease-in-out"
@@ -126,17 +134,23 @@ export default function Hero() {
             <div
               key={content.id}
               className="min-w-full flex flex-col relative rounded-2xl"
-              style={{ height: '309px' }}
+              style={{
+                height:
+                  window.innerWidth <= 640
+                    ? '150px' 
+                    : window.innerWidth <= 768
+                    ? '180px' 
+                    : '400px', 
+              }}
             >
               <Link
                 to={`/contenido/${content.slug}`}
-                className="block w-full h-80 md:h-[500px] overflow-hidden"
+                className="block w-full h-full overflow-hidden"
               >
                 <img
                   src={content.main_image_url}
                   alt={content.title}
-                  className="w-full h-full rounded-2xl"
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
+                  className="w-full h-full rounded-2xl object-cover object-center scale-[1.01] sm:scale-[1.02] lg:scale-[1.03] transition-all duration-500"
                   loading="lazy"
                 />
               </Link>
@@ -223,7 +237,6 @@ export default function Hero() {
         <h1 className="text-[#111C85] font-medium text-2xl sm:text-3xl max-w-sm text-center mx-auto mb-6 sm:mb-9 mt-6">
           Nuestras Noticias
         </h1>
-
         <div className="relative max-w-7xl mx-auto">
           <div className="flex gap-4 lg:gap-8 items-start">
             <div className="hidden xl:block sticky top-24 z-10 flex-shrink-0">
@@ -252,6 +265,5 @@ export default function Hero() {
           </div>
         </div>
       </section>
-    </motion.section>
   );
 }

@@ -162,7 +162,7 @@ export default function Header() {
   >
   <div className="flex flex-row items-center justify-between w-full ">
     {/* Menú reducido para móviles */}
-    <ul className="flex pt-2 sm:hidden items-center gap-1 w-full px-1 justify-center">
+    <ul className="flex pt-2 sm:hidden items-center gap-1 w-full px-1 pb-6 justify-center">
       {navigationItems.slice(0, 3).map((item, index) => (
         <React.Fragment key={item.label}>
           {index > 0 && <Divider />}
@@ -261,7 +261,7 @@ export default function Header() {
     </ul>
   
     {/* Menú completo para pantallas grandes */}
-    <ul className="hidden sm:flex items-center gap-1 pt-5 xl:pt-0 w-full justify-center px-8 pb-5 sm:pl-23 md:pl-25 lg:pl-32 xl:pl-10 ">
+    <ul className="hidden sm:flex items-center gap-1 pt-10 xl:pt-0 w-full justify-center px-8 pb-15 sm:pl-23 md:pl-25 lg:pl-32 xl:pl-10 ">
       {navigationItems.map((item, index) => (
         <React.Fragment key={item.label}>
           {index > 0 && <Divider />}
@@ -283,7 +283,7 @@ export default function Header() {
   </div>
 
   {/* Iniciar sesión para sm+ */}
-  <div className="hidden sm:flex xl:hidden relative items-center pr-3 md:pr-6 lg:pr-11" ref={userDropdownRefTablet}>
+  <div className="hidden sm:flex xl:hidden relative items-center mb-20 sm:mb-6 md:mb-8 pr-3 md:pr-6 lg:pr-11" ref={userDropdownRefTablet}>
     {name ? (
       <>
         <button
@@ -327,4 +327,4 @@ export default function Header() {
   </nav>
   </header>
   );
-  }
+}
