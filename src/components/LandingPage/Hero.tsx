@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState, useRef } from 'react';
 import ContentCard from './ContentCard.tsx';
 import { Link } from 'react-router-dom';
 import SocialShareBar from '../SocialShareBar/SocialShareBar.tsx';
-import { motion } from 'framer-motion';
 import InteractiveVideos from './InteractiveVideos.tsx';
 
 interface Content {
