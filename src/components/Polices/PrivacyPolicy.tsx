@@ -4,9 +4,11 @@ import Header from '../LandingPage/Header';
 const PrivacyPolicy = () => {
   return (
     <>
-      <Header />
+      
 
-      <section className="px-6 md:px-20 lg:px-40 py-10 text-justify text-sm leading-relaxed text-gray-800 ">
+    <section className=" bg-[#fff8f8fa] ">
+     <Header /> 
+      <div className='px-6 md:px-20 lg:px-40 py-8 text-justify text-sm leading-relaxed text-gray-800 '>
         <h1 className=" text-[28px] font-bold text-center mb-6 mt-12 text-[#111C85] ">Política de Privacidad</h1>
 
         <p>En Revista Destinos Turismo, nos comprometemos con la protección de tu privacidad y al tratamiento responsable de tus datos personales. Esta política explica qué información recopilamos, cómo la usamos y cuáles son tus derechos como usuario.</p>
@@ -58,7 +60,8 @@ const PrivacyPolicy = () => {
         <hr className="my-6 border-gray-300" />
 
         <p className="text-center text-sm text-gray-600">Última actualización: [07/06/2025]</p>
-        </section>
+      </div>
+    </section>
 
       <Footer />
     </>

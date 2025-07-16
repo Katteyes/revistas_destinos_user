@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import ContentCard from './ContentCard.tsx';
 import { Link } from 'react-router-dom';
 import SocialShareBar from '../SocialShareBar/SocialShareBar.tsx';
+import InteractiveVideos from './InteractiveVideos.tsx';
 
 interface Content {
   id: number;
@@ -38,9 +39,9 @@ export default function Hero() {
   }, []);
 
   const importantTitles = [
-    'LIGNA 2025 ha celebrado 50 años',
-    'Cómo visitar Roma y el Vaticano durante el funeral del papa Francisco',
-    'Turismo: Naturaleza que sorprende',
+    'Destinos Turísticos Chilenos 2025: Astroturismo, Esquí y Enoturismo',
+    'Turismo en Perú crece y PromPerú impulsa plan 2025',
+    'El restaurante peruano Maido acaba de ser elegido el mejor del Mundo 2025',
   ];
 
   const importantContents = contents.filter(content => importantTitles.includes(content.title));
@@ -105,16 +106,18 @@ export default function Hero() {
 
   return (
     <section
-      className="w-full flex flex-col items-center justify-center"
+      className="w-full flex flex-col items-center justify-center mt-1 sm:mt-2 md:mt-2"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div
-        className="relative overflow-hidden shadow-lg mx-auto w-full max-w-screen-lg rounded-2xl"
-        style={{ width: '100%', height: '309px' }}
+        className="relative overflow-hidden shadow-lg w-full sm:w-[95%] sm:max-w-3xl md:max-w-5xl lg:max-w-6xl mx-auto rounded-2xl"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
+        style={{
+          height: window.innerWidth <= 640 ? '150px' : window.innerWidth <= 768 ? '180px' : '400px',
+        }}
       >
         <div
           className="flex transition-transform duration-700 ease-in-out"
@@ -124,17 +127,19 @@ export default function Hero() {
             <div
               key={content.id}
               className="min-w-full flex flex-col relative rounded-2xl"
-              style={{ height: '309px' }}
+              style={{
+                height:
+                  window.innerWidth <= 640 ? '150px' : window.innerWidth <= 768 ? '180px' : '400px',
+              }}
             >
               <Link
                 to={`/contenido/${content.slug}`}
-                className="block w-full h-80 md:h-[500px] overflow-hidden"
+                className="block w-full h-full overflow-hidden"
               >
                 <img
                   src={content.main_image_url}
                   alt={content.title}
-                  className="w-full h-full rounded-2xl"
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
+                  className="w-full h-full rounded-2xl object-cover object-center scale-[1.01] sm:scale-[1.02] lg:scale-[1.03] transition-all duration-500"
                   loading="lazy"
                 />
               </Link>
@@ -183,21 +188,38 @@ export default function Hero() {
           />
         ))}
       </div>
+      <InteractiveVideos />
+      <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-7 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[375px] z-20">
+        <Link
+          to="/register"
+          className="group block max-w-[280px] sm:max-w-xs w-full rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-2xl transition-all duration-300scale-75 sm:scale-90 md:scale-95 lg:scale-100"
+        >
+          <div className="w-full h-20 sm:h-24 md:h-26 lg:h-26 overflow-hidden">
+            <img
+              src="/Boton.png"
+              alt="Regístrate"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
 
-      <section className="my-2 w-full px-4  sm:px-6 lg:px-8 mx-auto">
-        <h1 className="text-[#111C85] text-center text-4xl font-semibold tracking-tighter leading-[64.8px] max-md:text-3xl mb-8">
-          NUESTRAS NOTICIAS
+          <div className="p-2 sm:p-2.5 md:p-3 text-center bg-white">
+            <p className="text-xs sm:text-sm text-gray-700 font-medium leading-tight sm:leading-normal">
+              <span className="font-bold text-[#111C85]">REGÍSTRATE</span> y no te pierdas de las
+              revistas más novedosas del momento!
+            </p>
+          </div>
+        </Link>
+      </div>
+      <section className="my-1 w-full px-4 sm:px-6 lg:px-8 mx-auto">
+        <h1 className="text-[#111C85] font-medium text-2xl sm:text-3xl max-w-sm text-center mx-auto mb-6 sm:mb-9 mt-6">
+          Nuestras Noticias
         </h1>
-
-        {/* Contenedor principal con SocialShareBar y Grid */}
         <div className="relative max-w-7xl mx-auto">
           <div className="flex gap-4 lg:gap-8 items-start">
-            {/* SocialShareBar - visible desde xl */}
             <div className="hidden xl:block sticky top-24 z-10 flex-shrink-0">
               <SocialShareBar size="medium" />
             </div>
 
-            {/* Grid de noticias con responsive mejorado */}
             <div className="flex-1 w-full">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
                 {contents.map(content => (
@@ -215,7 +237,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* SocialShareBar móvil/tablet - fixed en la derecha */}
           <div className="xl:hidden fixed right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50">
             <SocialShareBar mobile={true} />
           </div>
