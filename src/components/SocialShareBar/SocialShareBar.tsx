@@ -43,7 +43,7 @@ export const SocialShareBar: FC<Props> = ({
       bg: 'bg-[#3b5998]',
     },
     {
-      href: 'https://wa.me/34664349972',
+      href: 'https://wa.me/+51990047528',
       label: 'Compartir por WhatsApp',
       icon: MessageCircle,
       bg: 'bg-[#3b5998]',

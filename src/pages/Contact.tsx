@@ -78,25 +78,6 @@ const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* EUROPA */}
-            <div className="border border-gray-200 p-6 rounded-lg shadow-sm bg-white">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Europa</h3>
-              <div className="flex flex-col items-start space-y-3">
-                <div className="flex items-center space-x-2">
-                  <PhoneIcon className="h-5 w-5 text-[#111C85]" />
-                  <a href="https://wa.me/34664349972" target="_blank" className="text-blue-600 hover:underline break-all text-sm sm:text-base">
-                    +34 664 349 972
-                  </a>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <EnvelopeIcon className="h-5 w-5 text-[#111C85]" />
-                  <a href="mailto:redaccioneuropa@destinosrevistaturismo.com" className="text-blue-600 hover:underline break-all text-sm sm:text-base">
-                    redaccioneuropa@destinosrevistaturismo.com
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </main>
       </section>

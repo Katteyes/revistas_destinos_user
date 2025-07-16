@@ -189,12 +189,12 @@ export default function Hero() {
         ))}
       </div>
       <InteractiveVideos />
-      <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-30 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[350px] z-20">
+      <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-7 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[375px] z-20">
         <Link
           to="/register"
           className="group block max-w-[280px] sm:max-w-xs w-full rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-2xl transition-all duration-300scale-75 sm:scale-90 md:scale-95 lg:scale-100"
         >
-          <div className="w-full h-20 sm:h-24 md:h-26 lg:h-28 overflow-hidden">
+          <div className="w-full h-20 sm:h-24 md:h-26 lg:h-26 overflow-hidden">
             <img
               src="/Boton.png"
               alt="Regístrate"
