@@ -85,7 +85,7 @@ export default function Header() {
         <motion.img
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 300 }} 
-          src="/logoDestinos.png" alt="Logo destinos" 
+          src="/logoCuba.png" alt="Logo Cuba" 
           className="h-full object-contain" 
         />
       </Link>
@@ -94,7 +94,7 @@ export default function Header() {
         <motion.img
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 300 }} 
-          src="/logoCuba.png" alt="Logo Cuba" 
+          src="/logoDestinos2.png" alt="Logo destinos " 
           className="h-full object-contain" 
         />
       </div>
