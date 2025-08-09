@@ -38,9 +38,9 @@ export default function Hero() {
   }, []);
 
   const importantTitles = [
-    'Destinos Turísticos Chilenos 2025: Astroturismo, Esquí y Enoturismo',
-    'Turismo en Perú crece y PromPerú impulsa plan 2025',
-    'El restaurante peruano Maido acaba de ser elegido el mejor del Mundo 2025',
+    'Revista "Destinos Cuba" lanza su segunda edición',
+    'Perú y Cuba firman acuerdo sobre cooperación turística',
+    'Cuba domina el ranking de mejores playas 2025',
   ];
 
   const importantContents = contents.filter(content => importantTitles.includes(content.title));
