@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import ContentCard from './ContentCard.tsx';
 import { Link } from 'react-router-dom';
 import SocialShareBar from '../SocialShareBar/SocialShareBar.tsx';
+import ReactPlayer from 'react-player';
+import { motion } from 'framer-motion';
 
 interface Content {
   id: number;
@@ -26,6 +28,9 @@ export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const autoplayInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const [showControls1, setShowControls1] = useState(false);
+  const [showControls2, setShowControls2] = useState(false);
 
   useEffect(() => {
     fetch('https://backend-destinos.impplac.com/api/contents')
@@ -196,6 +201,93 @@ export default function Hero() {
           />
         ))}
       </div>
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: 'backIn' }}
+        viewport={{ once: true, amount: 0.1 }}
+        className="w-full mt-10 bg-[#323c96] pb-10 mb-4 rounded-3xl lg:rounded-none shadow-xl"
+      >
+        <div className="max-w-7xl mx-auto px-6 sm:px-6 md:px-10 lg:px-8">
+          <h1 className="text-white font-medium text-2xl sm:text-3xl pt-3 my-5 text-center">
+            Contenidos Interactivos
+          </h1>
+
+          <div className="flex flex-col md:flex-col lg:flex-row gap-4 lg:h-[500px]">
+            <div className="w-full lg:flex-[0_0_70%] h-full">
+              <div
+                className="relative w-full h-full rounded-xl overflow-hidden bg-black shadow-xl"
+                onMouseEnter={() => setShowControls1(true)}
+                onMouseLeave={() => setShowControls1(false)}
+              >
+                <div className="absolute top-2 left-2 bg-[rgba(47,59,92,0.8)] text-white px-3 py-1 rounded-md text-sm font-medium backdrop-blur max-w-[80%] break-words whitespace-normal">
+                  Arequipa - Documental
+                </div>
+                <ReactPlayer
+                  url="https://backend-destinos.impplac.com/public/uploads/videos/AREQUIPA - Documental.mp4"
+                  width="100%"
+                  height="100%"
+                  controls={showControls1}
+                  playing={true}
+                  muted={true}
+                  loop={true}
+                />
+              </div>
+            </div>
+
+            <div className="w-full flex flex-col gap-4 md:flex-row md:h-[200px] lg:flex-col lg:flex-[0_0_30%] lg:h-full">
+              <div
+                className="relative flex-1 rounded-xl overflow-hidden bg-black shadow-xl"
+                onMouseEnter={() => setShowControls2(true)}
+                onMouseLeave={() => setShowControls2(false)}
+              >
+                <div className="absolute top-2 left-2 bg-[rgba(47,59,92,0.8)] text-white px-3 py-1 rounded-md text-sm font-medium backdrop-blur max-w-[80%] break-words whitespace-normal">
+                  Cuba - Video General
+                </div>
+                <ReactPlayer
+                  url="https://backend-destinos.impplac.com/public/uploads/videos/CUBA - Video General.mp4"
+                  width="100%"
+                  height="100%"
+                  controls={showControls2}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="hidden lg:block absolute right-3 sm:right-4 md:right-6 lg:right-8 xl:right-30 top-[280px] sm:top-[320px] md:top-[350px] lg:top-[380px] xl:top-[350px] z-20">
+            <Link
+              to="/register"
+              className="group block max-w-[280px] sm:max-w-xs w-full rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-2xl transition-all duration-300scale-75 sm:scale-90 md:scale-95 lg:scale-100"
+            >
+              <div className="w-full h-20 sm:h-24 md:h-26 lg:h-28 overflow-hidden">
+                <img
+                  src="/Boton.png"
+                  alt="Regístrate"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
+              <div className="p-2 sm:p-2.5 md:p-3 text-center bg-white">
+                <p className="text-xs sm:text-sm text-gray-700 font-medium leading-tight sm:leading-normal">
+                  <span className="font-bold text-[#111C85]">REGÍSTRATE</span> y no te pierdas de
+                  las revistas más novedosas del momento!
+                </p>
+              </div>
+
+              <div className="ml-52 sm:ml-56 md:ml-60 lg:ml-65">
+                <svg
+                  className="w-6 h-4 sm:w-8 h-5 md:w-9 h-5 lg:w-10 h-6 text-[#111C85] transform -translate-y-6 sm:-translate-y-7 md:-translate-y-7 lg:-translate-y-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+          </div>
+        </Link>
+      </div>
 
       <section className="my-1 w-full px-0 sm:px-4 md:px-6 lg:px-8 mx-auto">
         <h1 className="text-[#111C85] font-medium text-2xl sm:text-3xl max-w-sm text-center mx-auto mb-6 sm:mb-9 mt-6">
@@ -206,6 +298,7 @@ export default function Hero() {
             <div className="hidden xl:block sticky top-24 z-10 flex-shrink-0">
               <SocialShareBar size="medium" />
             </div>
+
             <div className="flex-1 w-full">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
                 {contents.map(content => (
@@ -227,6 +320,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
+
       {/* Botón de WhatsApp */}
       <a
         href="https://wa.me/34664349972"
@@ -242,6 +336,3 @@ export default function Hero() {
           className="w-8 h-8"
         />
       </a>
-    </section>
-  );
-}
