@@ -73,9 +73,9 @@ export default function Magazines() {
     <>
       <section className="bg-[#FFF8F8]">
         <Header />
-        <section className="my-16 px-8">
-          <h1 className="text-[#111C85] font-medium text-3xl text-center mb-10">
-            REVISTAS DESTINOS TURISMO
+        <section className="my-30 px-8  ">
+          <h1 className="text-[#111C85] text-center text-4xl font-semibold tracking-tighter leading-[64.8px] max-md:text-3xl mb-8">
+            NUESTRAS REVISTAS
           </h1>
 
           {magazines.length === 0 ? (
