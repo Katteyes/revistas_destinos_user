@@ -286,9 +286,8 @@ export default function Hero() {
               </div>
             </Link>
           </div>
-        </Link>
       </div>
-
+</motion.section>
       <section className="my-1 w-full px-0 sm:px-4 md:px-6 lg:px-8 mx-auto">
         <h1 className="text-[#111C85] font-medium text-2xl sm:text-3xl max-w-sm text-center mx-auto mb-6 sm:mb-9 mt-6">
           Nuestras Noticias
@@ -320,7 +319,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-
+    
       {/* Botón de WhatsApp */}
       <a
         href="https://wa.me/34664349972"
@@ -336,3 +335,6 @@ export default function Hero() {
           className="w-8 h-8"
         />
       </a>
+      </section>
+  );
+}
