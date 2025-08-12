@@ -39,9 +39,9 @@ export default function Hero() {
   }, []);
 
   const importantTitles = [
-    'Destinos Turísticos Chilenos 2025: Astroturismo, Esquí y Enoturismo',
-    'Turismo en Perú crece y PromPerú impulsa plan 2025',
-    'El restaurante peruano Maido acaba de ser elegido el mejor del Mundo 2025',
+    'Revista "Destinos Cuba" lanza su segunda edición',
+    'Perú y Cuba firman acuerdo sobre cooperación turística',
+    'Cuba domina el ranking de mejores playas 2025',
   ];
 
   const importantContents = contents.filter(content => importantTitles.includes(content.title));
@@ -139,8 +139,9 @@ export default function Hero() {
                 <img
                   src={content.main_image_url}
                   alt={content.title}
-                  className="w-full h-full rounded-2xl object-cover object-center scale-[1.01] sm:scale-[1.02] lg:scale-[1.03] transition-all duration-500"
+                  className="w-full h-full rounded-2xl object-fill"
                   loading="lazy"
+                  style={{ objectFit: 'fill' }}
                 />
               </Link>
               <div className="w-full absolute bottom-0 bg-[rgba(255,255,255,0.3)] backdrop-blur-sm p-4 max-h-[50%]  rounded-b-2xl">
